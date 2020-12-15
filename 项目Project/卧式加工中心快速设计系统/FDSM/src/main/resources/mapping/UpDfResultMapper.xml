@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.UpDfResultDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.upDfResult">
+    <id column="zj_id" jdbcType="INTEGER" property="zjId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="df_date" jdbcType="VARCHAR" property="dfDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    zj_id, name, df_date
+  </sql>
+  <select id="selectUpResult" resultMap="BaseResultMap">
+    select *
+    from mt_updfresult
+  
+  </select>
+  <delete id="deleteByUpId" parameterType="java.lang.Integer">
+    delete from mt_updfresult
+    where zj_id = #{zjId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertUpResult" parameterType="com.nuaa.bean.upDfResult">
+    insert into mt_updfresult (zj_id, name, df_date
+      )
+    values (#{zjId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{dfDate,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>

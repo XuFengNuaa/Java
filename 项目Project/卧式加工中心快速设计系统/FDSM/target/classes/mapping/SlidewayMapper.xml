@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.SlidewayDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Slideway">
+    <id column="daogui_id" jdbcType="INTEGER" property="daoguiId" />
+    <result column="xinghao" jdbcType="VARCHAR" property="xinghao" />
+    <result column="zhou" jdbcType="VARCHAR" property="zhou" />
+    <result column="jdlevel" jdbcType="VARCHAR" property="jdlevel" />
+    <result column="width" jdbcType="INTEGER" property="width" />
+    <result column="length" jdbcType="INTEGER" property="length" />
+    <result column="aL" jdbcType="VARCHAR" property="aL" />
+    <result column="aR" jdbcType="VARCHAR" property="aR" />
+    <result column="distance" jdbcType="VARCHAR" property="distance" />
+    <result column="hks" jdbcType="VARCHAR" property="hks" />
+    <result column="eddn" jdbcType="INTEGER" property="eddn" />
+    <result column="edjn" jdbcType="INTEGER" property="edjn" />
+    <result column="yuya" jdbcType="VARCHAR" property="yuya" />
+    <result column="dwjd" jdbcType="DOUBLE" property="dwjd" />
+    <result column="agdwjd" jdbcType="DOUBLE" property="agdwjd" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    daogui_id, xinghao, zhou, jdlevel,width, length,aL,aR, distance, hks,eddn,edjn, yuya, dwjd, agdwjd, course
+  </sql>
+  
+  <!-- 条件查询 -->
+  <select id="findSdwaySelective"  resultType="Slideway">
+		SELECT * FROM mt_slideway 
+	<where>
+		<if test="xinghao!=null and xinghao!=''">
+			and xinghao = #{xinghao}
+		</if>
+		<if test="jdlevel!=null and jdlevel!=''">
+			and jdlevel = #{jdlevel}
+		</if>
+		
+		<if test="width!=null and width!=''">
+			and width &gt;= #{width}
+		</if>
+		<if test="daoguiId!='' and daoguiId!=null">
+			and daogui_id = #{daoguiId}
+		</if>
+		<if test="course!=null and course!=''">
+			and course = #{course}
+		</if>
+	</where>
+  </select>
+  	<!-- 模糊条件查询 -->
+  <select id="findSdwayMHSelective"  resultType="Slideway">
+		SELECT * FROM mt_slideway 
+	<where>
+		<if test="xinghao!=null and xinghao!=''">
+			and xinghao like concat('%',#{xinghao},'%')	 
+		</if>
+		<if test="zhou!=null and zhou!=''">
+			and zhou like concat('%',#{zhou},'%')	
+		</if>
+		<if test="jdlevel!=null and jdlevel!=''">
+			and jdlevel like concat('%',#{jdlevel},'%')	
+		</if>
+		<if test="daoguiId!='' and daoguiId!=null">
+			and daogui_id like concat('%',#{daoguiId},'%')
+		</if>
+		<if test="course!=null and course!=''">
+			and course like concat('%',#{course},'%')
+		</if>
+	</where>
+  </select>
+  
+  <select id="findReasonSdWay"  resultType="Slideway">
+		SELECT * FROM mt_slideway 
+		where width &gt;= #{width}-5 and zhou = #{zhou} and dwjd &lt;= #{dwjd} 
+		<if test="length !=null and length !=''">
+			and length &gt;= #{length}
+		</if>	
+		order by width limit 2
+  </select>
+  
+  <delete id="deleteSdwayById" parameterType="java.lang.Integer">
+    delete from mt_slideway
+    where daogui_id = #{daoguiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSdway" parameterType="com.nuaa.bean.Slideway">
+    insert into mt_slideway (daogui_id, xinghao, zhou, 
+      jdlevel, width, length,aL,aR, distance, 
+      hks, yuya,eddn,edjn, dwjd, agdwjd, 
+      course)
+    values (#{daoguiId,jdbcType=INTEGER}, #{xinghao,jdbcType=VARCHAR}, #{zhou,jdbcType=VARCHAR}, 
+      #{jdlevel,jdbcType=VARCHAR},#{width,jdbcType=INTEGER}, #{length,jdbcType=INTEGER},#{aL,jdbcType=VARCHAR},
+      #{aR,jdbcType=VARCHAR}, #{distance,jdbcType=VARCHAR}, 
+      #{hks,jdbcType=VARCHAR}, #{yuya,jdbcType=VARCHAR}, #{eddn,jdbcType=INTEGER},#{edjn,jdbcType=INTEGER},
+      #{dwjd,jdbcType=DOUBLE}, #{agdwjd,jdbcType=DOUBLE}, 
+      #{course,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateSdwayByIdSelective" parameterType="com.nuaa.bean.Slideway">
+    update mt_slideway
+    <set>
+      <if test="xinghao != null">
+        xinghao = #{xinghao,jdbcType=VARCHAR},
+      </if>
+      <if test="zhou != null">
+        zhou = #{zhou,jdbcType=VARCHAR},
+      </if>
+      <if test="jdlevel != null">
+        jdlevel = #{jdlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        width= #{width,jdbcType=INTEGER},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="aL != null">
+        aL = #{aL,jdbcType=VARCHAR},
+      </if>
+      <if test="aR != null">
+        aR = #{aR,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null">
+        distance = #{distance,jdbcType=VARCHAR},
+      </if>
+      <if test="hks != null">
+        hks = #{hks,jdbcType=VARCHAR},
+      </if>
+      <if test="yuya != null">
+        yuya = #{yuya,jdbcType=VARCHAR},
+      </if>
+      <if test="eddn != null">
+        eddn= #{eddn,jdbcType=INTEGER},
+      </if>
+      <if test="edjn != null">
+        edjn= #{edjn,jdbcType=INTEGER},
+      </if>
+      <if test="dwjd != null">
+        dwjd = #{dwjd,jdbcType=DOUBLE},
+      </if>
+      <if test="agdwjd != null">
+        agdwjd = #{agdwjd,jdbcType=DOUBLE},
+      </if>
+      <if test="course != null">
+        course = #{course,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where daogui_id = #{daoguiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateSdwayById" parameterType="com.nuaa.bean.Slideway">
+    update mt_slideway
+    set xinghao = #{xinghao,jdbcType=VARCHAR},
+      zhou = #{zhou,jdbcType=VARCHAR},
+      jdlevel = #{jdlevel,jdbcType=VARCHAR},
+      width= #{width,jdbcType=INTEGER},
+      length = #{length,jdbcType=INTEGER},
+      aL = #{aL,jdbcType=VARCHAR},
+      aR = #{aR,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=VARCHAR},
+      hks = #{hks,jdbcType=VARCHAR},
+      yuya = #{yuya,jdbcType=VARCHAR},
+      eddn= #{eddn,jdbcType=INTEGER},
+      edjn= #{edjn,jdbcType=INTEGER},
+      dwjd = #{dwjd,jdbcType=DOUBLE},
+      agdwjd = #{agdwjd,jdbcType=DOUBLE},
+      course = #{course,jdbcType=VARCHAR}
+    where daogui_id = #{daoguiId,jdbcType=INTEGER}
+  </update>
+</mapper>

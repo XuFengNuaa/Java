@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+ "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="Login" class="com.nuaa.app.impl.LoginImpl"/>
+  <bean id="UsrMod" class="com.nuaa.app.impl.UsrModImpl"/>
+  <bean id="huizongMod" class="com.nuaa.app.impl.huizongModImpl"/>
+  <bean id="UsrInfMod" class="com.nuaa.app.impl.UsrInfModImpl"/>
+  <bean id="StoreStatModC" class="com.nuaa.app.impl.StoreStatModCImpl"/>
+  <bean id="MillSim_Mod" class="com.nuaa.app.impl.MillSim_ModImpl"/>
+  <bean id="PartProcessMod" class="com.nuaa.app.impl.PartProcessModImpl"/>
+  <bean id="ManufactureMod" class="com.nuaa.app.impl.ManufectureModImpl"/>
+  <bean id="MatainMod" class="com.nuaa.app.impl.MaintainModImpl"/>
+  <bean id="ShouJuanMod" class="com.nuaa.app.impl.ShouJuanModImpl"/>
+  <bean id="chinese" class="com.nuaa.app.impl.chineseImpl"/>
+  <bean id="english" class="com.nuaa.app.impl.englishImpl"/>
+  <bean id="FenQieMod" class="com.nuaa.app.impl.FenQieModImpl"/>
+  <bean id="StoreStatModCT" class="com.nuaa.app.impl.StoreStatModCTImpl"/>
+  <bean id="StoreStatModM" class="com.nuaa.app.impl.StoreStatModMImpl"/>
+  <bean id="StoreStatModMT" class="com.nuaa.app.impl.StoreStatModMTImpl"/>
+  <bean id="UsrInfModC" class="com.nuaa.app.impl.UsrInfModCImpl"/>
+  <bean id="UsrInfModCT" class="com.nuaa.app.impl.UsrInfModCTImpl"/>
+  <bean id="UsrInfModM" class="com.nuaa.app.impl.UsrInfModMImpl"/>
+  <bean id="UsrInfModMT" class="com.nuaa.app.impl.UsrInfModMTImpl"/>
+  <bean id="UsrPunish" class="com.nuaa.app.impl.UsrPunishImpl"/>
+  <bean id="HQBorrow" class="com.nuaa.app.impl.HQBorrowImpl"/>
+   <bean id="Ministore" class="com.nuaa.app.impl.MinistoreImpl"/>
+   <bean id="Standard" class="com.nuaa.app.impl.StandardImpl"/>
+  <bean id="PactEnStandar" class="com.nuaa.app.impl.PactEnStandarImp"/>
+  <bean id="PamgEnStandar" class="com.nuaa.app.impl.PamgEnStandarImp"/>
+  <bean id="PamEnStandar" class="com.nuaa.app.impl.PamEnStandarImp"/>
+  <bean id="PacEnStandar" class="com.nuaa.app.impl.PacEnStandarImp"/>
+  <bean id="GleaderApp" class="com.nuaa.app.impl.GleaderAppImpl"/>
+  <bean id="LeaderApp" class="com.nuaa.app.impl.LeaderAppImpl"/>
+  <bean id="LeaderApplt" class="com.nuaa.app.impl.LeaderAppltImpl"/>
+  <bean id="LeaderCheck" class="com.nuaa.app.impl.LeaderCheckImpl"/>
+  <bean id="StoreCut" class="com.nuaa.app.impl.StoreCutImpl"/>
+  <bean id="StoreTool" class="com.nuaa.app.impl.StoreToolImpl"/>
+  <bean id="StoreMeas" class="com.nuaa.app.impl.StoreMeasImpl"/>
+  <bean id="StoreMeatool" class="com.nuaa.app.impl.StoreMeatoolImpl"/>
+  <bean id="CutterMod" class="com.nuaa.app.impl.CutterModImpl"/>
+  <bean id="M_type_mod" class="com.nuaa.app.impl.M_type_modImpl"/>
+  <bean id="StoreCheck" class="com.nuaa.app.impl.StoreCheckImpl"/>  
+   <bean id="CompanyMod" class="com.nuaa.app.impl.CompanyModImpl"/> 
+  <bean id="Tool_M_Mod" class="com.nuaa.app.impl.Tool_M_ModImpl"/> 
+  <bean id="M_to_check" class="com.nuaa.app.impl.M_to_checkImpl"/>
+  <bean id="M_re_check" class="com.nuaa.app.impl.M_re_checkImpl"/>
+  <bean id="M_delete" class="com.nuaa.app.impl.M_deleteImpl"/>
+  <bean id="Cutter_grind" class="com.nuaa.app.impl.Cutter_grindImpl"/>
+  <bean id="Cutter_togrind_xml" class="com.nuaa.app.impl.Cutter_togrind_ExcelImpl"/>
+  <bean id="Tool_M_Del" class="com.nuaa.app.impl.Tool_M_DelImpl"/>
+  <bean id="PactlossStandard" class="com.nuaa.app.impl.PactlossStandardImpl"/>
+  <bean id="Leader_checkexcel" class="com.nuaa.app.impl.Leader_checkxml"/>
+  <bean id="Leader_appexcel" class="com.nuaa.app.impl.Leader_appxml"/>
+  <bean id="Leader_ltexcel" class="com.nuaa.app.impl.Leader_ltxml"/>
+  <bean id="UserExcel" class="com.nuaa.app.impl.UserXmlImpl"/>
+  <bean id="huizongExcel" class="com.nuaa.app.impl.huizongxmlImpl"/>
+  <bean id="StoreStatModCEx" class="com.nuaa.app.impl.StoreStatModCExImpl"/>
+  <bean id="StoreStatModCTEx" class="com.nuaa.app.impl.StoreStatModCTExImpl"/>
+  <bean id="MinistoreEx" class="com.nuaa.app.impl.MinistoreExImpl"/>
+  <bean id="StoreStatModMEx" class="com.nuaa.app.impl.StoreStatModMExImpl"/>
+  <bean id="StoreStatModMTEx" class="com.nuaa.app.impl.StoreStatModMTExImpl"/>
+  <bean id="Gleader_need" class="com.nuaa.app.impl.Gleader_needImpl"/>
+  <bean id="Leader_need" class="com.nuaa.app.impl.Leader_needImpl"/>
+  <bean id="LeaderAppEntry" class="com.nuaa.app.impl.LeaderAppEntryImpl"/>
+  <bean id="M_tocheck_xml" class="com.nuaa.app.impl.M_tocheck_xmlImpl"/> 
+  <bean id="Task_mod" class="com.nuaa.app.impl.Task_modImpl"/>    
+  <bean id="Store_needcheck" class="com.nuaa.app.impl.Store_needcheckImpl"/>
+  <bean id="Material_Mod" class="com.nuaa.app.impl.Material_ModImpl"/>
+  <bean id="Material_Entry" class="com.nuaa.app.impl.Material_EntryImpl"/>
+  <bean id="Material_Out" class="com.nuaa.app.impl.Material_OutImpl"/>
+  <bean id="Material_Change" class="com.nuaa.app.impl.Material_ChangeImpl"/>
+  <bean id="Material_delete" class="com.nuaa.app.impl.Material_deleteImpl"/>
+  <bean id="Store_Search" class="com.nuaa.app.impl.Store_SearchImpl"/>
+  <bean id="Store_SearchByMnum" class="com.nuaa.app.impl.Store_SearchByMnumImpl"/>
+  <bean id="QueryMaterial_In_Out" class="com.nuaa.app.impl.QueryMaterial_In_OutImpl"/>
+  <bean id="Material_Warn" class="com.nuaa.app.impl.Material_WarnImpl"/>
+  <bean id="Query_Delete" class="com.nuaa.app.impl.Query_DeleteImpl"/>
+  <bean id="InstrumentMod" class="com.nuaa.app.impl.InstrumentModImpl"/>
+  <bean id="ModelMod" class="com.nuaa.app.impl.ModelModImpl"/>
+<bean id="Model_In" class="com.nuaa.app.impl.Model_InImpl"/>
+<bean id="Model_Out" class="com.nuaa.app.impl.Model_OutImpl"/>
+<bean id="Model_Return" class="com.nuaa.app.impl.Model_ReturnImpl"/>
+<bean id="createMaterialExcel" class="com.nuaa.app.impl.createMaterialExcelImpl"/>
+<bean id="UsageStatMod" class="com.nuaa.app.impl.UsageStatModImpl"/>
+<bean id="materialgetperson" class="com.nuaa.app.impl.materialgetpersonImpl"/>
+
+  <!--设定为自动代理-->
+  <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+  <!--负责记录有异常发生时的信息-->
+  <bean id="exceptionHandler" class="com.nuaa.sys.handler.ExceptionHandler"/>
+  
+  <bean id="exceptionHandlereAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"> 
+        <property name="advice"> 
+            <ref bean="exceptionHandler"/> 
+        </property> 
+        <property name="patterns"> 
+            <value>.*.*</value> 
+        </property>
+  </bean> 
+  <!--负责记录方法的记录时间-->
+  <bean id="timeHandler" class="com.nuaa.sys.handler.TimeHandler"/>
+  <bean id="timeHandlerAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"> 
+        <property name="advice"> 
+            <ref bean="timeHandler"/> 
+        </property> 
+        <property name="patterns"> 
+            <value>.*.*</value> 
+        </property> 
+    </bean> 
+    
+</beans>

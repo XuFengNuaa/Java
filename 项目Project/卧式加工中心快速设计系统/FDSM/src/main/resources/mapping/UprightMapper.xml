@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.UprightDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Upright">
+    <id column="upright_id" jdbcType="INTEGER" property="uprightId" />
+    <result column="up_daihao" jdbcType="VARCHAR" property="upDaihao" />
+    <result column="structure" jdbcType="VARCHAR" property="structure" />
+    <result column="material" jdbcType="VARCHAR" property="material" />
+    <result column="sidingthick" jdbcType="INTEGER" property="sidingthick" />
+    <result column="shangdi" jdbcType="DOUBLE" property="shangdi" />
+    <result column="xiadi" jdbcType="VARCHAR" property="xiadi" />
+    <result column="kuangdu" jdbcType="INTEGER" property="kuangdu" />
+    <result column="yRoute" jdbcType="INTEGER" property="yRoute" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="diheight" jdbcType="VARCHAR" property="diheight" />
+    <result column="rail_distance" jdbcType="VARCHAR" property="railDistance" />
+    <result column="reducehole" jdbcType="VARCHAR" property="reducehole" />
+    <result column="cehole" jdbcType="INTEGER" property="cehole" />
+    <result column="dinghole" jdbcType="VARCHAR" property="dinghole" />
+    <result column="rib" jdbcType="VARCHAR" property="rib" />
+    <result column="hengxiang" jdbcType="VARCHAR" property="hengxiang" />
+    <result column="shuxiang" jdbcType="VARCHAR" property="shuxiang" />
+    <result column="ribthinck" jdbcType="INTEGER" property="ribthinck" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    upright_id, up_daihao, structure, material, sidingthick, shangdi, xiadi, kuangdu, yRoute
+    height, diheight, rail_distance, reducehole, cehole, dinghole, rib, hengxiang, shuxiang, 
+    ribthinck, course
+  </sql>
+  
+  <!-- 条件查询 -->
+  <select id="findUpSelective"  resultType="Upright">
+		SELECT * FROM mt_upright 
+	<where>
+		<if test="uprightId!='' and uprightId!=null">
+			and upright_id = #{uprightId}
+		</if>
+		<if test="course!=null and course!=''">
+			and course = #{course}
+		</if>
+	</where>
+  </select>
+  	<!-- 模糊条件查询 -->
+  <select id="findUpMHSelective"  resultType="Upright">
+		SELECT * FROM mt_upright 
+	<where>
+		<if test="uprightId!='' and uprightId!=null">
+			and upright_id like concat('%',#{uprightId},'%')
+		</if>
+		<if test="course!=null and course!=''">
+			and course like concat('%',#{course},'%')
+		</if>
+	</where>
+  </select>
+  
+  <!-- 查询总记录数 -->
+  <select id="getCountUp" resultType="int">
+		select count(*) from mt_upright
+  </select>
+  
+  
+  <delete id="deleteUpById" parameterType="java.lang.Integer">
+    delete from mt_upright
+    where upright_id = #{uprightId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertUp" parameterType="com.nuaa.bean.Upright">
+    insert into mt_upright (upright_id, up_daihao, structure, 
+      material, sidingthick, shangdi, 
+      xiadi, kuangdu, height, yRoute
+      diheight, rail_distance, reducehole, 
+      cehole, dinghole, rib, 
+      hengxiang, shuxiang, ribthinck, 
+      course)
+    values (#{uprightId,jdbcType=INTEGER}, #{upDaihao,jdbcType=VARCHAR}, #{structure,jdbcType=VARCHAR}, 
+      #{material,jdbcType=VARCHAR}, #{sidingthick,jdbcType=INTEGER}, #{shangdi,jdbcType=DOUBLE}, 
+      #{xiadi,jdbcType=VARCHAR}, #{kuangdu,jdbcType=INTEGER}, #{yRoute,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
+      #{diheight,jdbcType=VARCHAR}, #{railDistance,jdbcType=VARCHAR}, #{reducehole,jdbcType=VARCHAR}, 
+      #{cehole,jdbcType=INTEGER}, #{dinghole,jdbcType=VARCHAR}, #{rib,jdbcType=VARCHAR}, 
+      #{hengxiang,jdbcType=VARCHAR}, #{shuxiang,jdbcType=VARCHAR}, #{ribthinck,jdbcType=INTEGER}, 
+      #{course,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateUpByIdSelective" parameterType="com.nuaa.bean.Upright">
+    update mt_upright
+    <set>
+      <if test="upDaihao != null">
+        up_daihao = #{upDaihao,jdbcType=VARCHAR},
+      </if>
+      <if test="structure != null">
+        structure = #{structure,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        material = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="sidingthick != null">
+        sidingthick = #{sidingthick,jdbcType=INTEGER},
+      </if>
+      <if test="shangdi != null">
+        shangdi = #{shangdi,jdbcType=DOUBLE},
+      </if>
+      <if test="xiadi != null">
+        xiadi = #{xiadi,jdbcType=VARCHAR},
+      </if>
+      <if test="kuangdu != null">
+        kuangdu = #{kuangdu,jdbcType=INTEGER},
+      </if>
+      <if test="yRoute != null">
+        yRoute =  #{yRoute,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="diheight != null">
+        diheight = #{diheight,jdbcType=VARCHAR},
+      </if>
+      <if test="railDistance != null">
+        rail_distance = #{railDistance,jdbcType=VARCHAR},
+      </if>
+      <if test="reducehole != null">
+        reducehole = #{reducehole,jdbcType=VARCHAR},
+      </if>
+      <if test="cehole != null">
+        cehole = #{cehole,jdbcType=INTEGER},
+      </if>
+      <if test="dinghole != null">
+        dinghole = #{dinghole,jdbcType=VARCHAR},
+      </if>
+      <if test="rib != null">
+        rib = #{rib,jdbcType=VARCHAR},
+      </if>
+      <if test="hengxiang != null">
+        hengxiang = #{hengxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="shuxiang != null">
+        shuxiang = #{shuxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="ribthinck != null">
+        ribthinck = #{ribthinck,jdbcType=INTEGER},
+      </if>
+      <if test="course != null">
+        course = #{course,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where upright_id = #{uprightId,jdbcType=INTEGER}
+  </update>
+  <update id="updateUpById" parameterType="com.nuaa.bean.Upright">
+    update mt_upright
+    set up_daihao = #{upDaihao,jdbcType=VARCHAR},
+      structure = #{structure,jdbcType=VARCHAR},
+      material = #{material,jdbcType=VARCHAR},
+      sidingthick = #{sidingthick,jdbcType=VARCHAR},
+      shangdi = #{shangdi,jdbcType=DOUBLE},
+      xiadi = #{xiadi,jdbcType=VARCHAR},
+      kuangdu = #{kuangdu,jdbcType=INTEGER},
+      yRoute =  #{yRoute,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      diheight = #{diheight,jdbcType=VARCHAR},
+      rail_distance = #{railDistance,jdbcType=VARCHAR},
+      reducehole = #{reducehole,jdbcType=VARCHAR},
+      cehole = #{cehole,jdbcType=INTEGER},
+      dinghole = #{dinghole,jdbcType=VARCHAR},
+      rib = #{rib,jdbcType=VARCHAR},
+      hengxiang = #{hengxiang,jdbcType=VARCHAR},
+      shuxiang = #{shuxiang,jdbcType=VARCHAR},
+      ribthinck = #{ribthinck,jdbcType=INTEGER},
+      course = #{course,jdbcType=VARCHAR}
+    where upright_id = #{uprightId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,8 @@
+﻿dao文件中的dao接口 写出所有接口对应得mapper文件中的所有方法
+service文件的接口 写出所调用的方法名，并在service实现类中具体实现
+
+实现需要注入相应的service和dao
+
+在controller中 注入 service
+
+具体参照 personmapper、IPersonService、PersonServiceImpl

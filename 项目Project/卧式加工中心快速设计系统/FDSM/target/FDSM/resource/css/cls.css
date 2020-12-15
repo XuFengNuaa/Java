@@ -1,0 +1,18 @@
+.aboutUs{background-image: url(../image/system.png)!important;}
+.loginOut{background-image: url(../image/control-power.png)!important;}
+.files {background-image:url(../image/files.gif) !important;}
+.add {background-image:url(../image/add.gif) !important;}
+.delete {background-image:url(../image/delete.png) !important;}
+.edit {background-image:url(../image/edit.png) !important;}
+.view {background-image:url(../image/view.png) !important;}
+.login {background-image:url(../image/plus-shield.png) !important;}
+.search{background-image:url(../image/search.png) !important;}
+.choose{background-image:url(../image/audit.png) !important;}
+.userMod{background-image:url(../image/user.jpg) !important;}
+.reason{background-image:url(../image/update.gif) !important;}
+.x-form-unit {    
+       height: 22px;    
+       line-height: 22px;    
+       padding-left: 2px;    
+       display: inline-block;    
+       display: inline;    }  

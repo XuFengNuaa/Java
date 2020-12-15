@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.BdWeightDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.BdWeight">
+    <id column="bid" jdbcType="INTEGER" property="bid" />
+    <result column="b_length" jdbcType="DOUBLE" property="bLength" />
+    <result column="b_width" jdbcType="DOUBLE" property="bWidth" />
+    <result column="b_height" jdbcType="DOUBLE" property="bHeight" />
+    <result column="b_cd" jdbcType="DOUBLE" property="bCd" />
+    <result column="b_xL" jdbcType="DOUBLE" property="bXl" />
+    <result column="b_xD" jdbcType="DOUBLE" property="bXd" />
+    <result column="b_zL" jdbcType="DOUBLE" property="bZl" />
+    <result column="b_zD" jdbcType="DOUBLE" property="bZd" />
+    <result column="b_ribThick" jdbcType="DOUBLE" property="bRibthick" />
+    <result column="b_hole" jdbcType="DOUBLE" property="bHole" />
+    <result column="b_structure" jdbcType="DOUBLE" property="bStructure" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bid, b_length, b_width, b_height, b_cd, b_xL, b_xD, b_zL, b_zD, b_ribThick, 
+    b_hole, b_structure
+  </sql>
+  
+  <select id="selectBd"  resultMap="BaseResultMap">
+  		SELECT * FROM mt_bedweight 
+    <where>
+		<if test="bid !=null and bid !=''">
+			and bid = #{bid}
+		</if>
+	</where>
+  </select>
+  
+  <delete id="deleteBdWById" parameterType="java.lang.Integer">
+    delete from mt_bedweight
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertBdW" parameterType="com.nuaa.bean.BdWeight">
+    insert into mt_bedweight (bid, b_length, b_width, 
+      b_height, b_cd, b_xL, b_xD, 
+      b_zL, b_zD, b_ribThick, 
+      b_hole, b_structure)
+    values (#{bid,jdbcType=INTEGER}, #{bLength,jdbcType=DOUBLE}, #{bWidth,jdbcType=DOUBLE}, 
+      #{bHeight,jdbcType=DOUBLE}, #{bCd,jdbcType=DOUBLE}, #{bXl,jdbcType=DOUBLE}, #{bXd,jdbcType=DOUBLE}, 
+      #{bZl,jdbcType=DOUBLE}, #{bZd,jdbcType=DOUBLE}, #{bRibthick,jdbcType=DOUBLE}, 
+      #{bHole,jdbcType=DOUBLE}, #{bStructure,jdbcType=DOUBLE})
+  </insert>
+  
+  
+  <update id="updateBdWById" parameterType="com.nuaa.bean.BdWeight">
+    update mt_bedweight
+    set b_length = #{bLength,jdbcType=DOUBLE},
+      b_width = #{bWidth,jdbcType=DOUBLE},
+      b_height = #{bHeight,jdbcType=DOUBLE},
+      b_cd = #{bCd,jdbcType=DOUBLE},
+      b_xL = #{bXl,jdbcType=DOUBLE},
+      b_xD = #{bXd,jdbcType=DOUBLE},
+      b_zL = #{bZl,jdbcType=DOUBLE},
+      b_zD = #{bZd,jdbcType=DOUBLE},
+      b_ribThick = #{bRibthick,jdbcType=DOUBLE},
+      b_hole = #{bHole,jdbcType=DOUBLE},
+      b_structure = #{bStructure,jdbcType=DOUBLE}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>

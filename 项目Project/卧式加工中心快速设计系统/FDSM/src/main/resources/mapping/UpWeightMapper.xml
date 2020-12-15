@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.UpWeightDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.UpWeight">
+    <id column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="Height" jdbcType="DOUBLE" property="height" />
+    <result column="Kuang" jdbcType="DOUBLE" property="kuang" />
+    <result column="yroute" jdbcType="DOUBLE" property="yroute" />
+    <result column="sdWidth" jdbcType="DOUBLE" property="sdwidth" />
+    <result column="sdHeight" jdbcType="DOUBLE" property="sdheight" />
+    <result column="sideThick" jdbcType="DOUBLE" property="sidethick" />
+    <result column="hole" jdbcType="DOUBLE" property="hole" />
+    <result column="ribThick" jdbcType="DOUBLE" property="ribthick" />
+    <result column="hNumber" jdbcType="DOUBLE" property="hnumber" />
+    <result column="sNumber" jdbcType="DOUBLE" property="snumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    wid, Height, Kuang, yroute, sdWidth, sdHeight, sideThick, hole, ribThick, hNumber, 
+    sNumber
+  </sql>
+  <select id="selectUpById"  resultMap="BaseResultMap">
+  		SELECT * FROM mt_upweight 
+    <where>
+		<if test="wid !=null and wid !=''">
+			and wid = #{wid}
+		</if>
+	</where>
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from mt_upweight
+    where wid = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nuaa.bean.UpWeight">
+    insert into mt_upweight (wid, Height, Kuang, 
+      yroute, sdWidth, sdHeight, 
+      sideThick, hole, ribThick, 
+      hNumber, sNumber)
+    values (#{wid,jdbcType=INTEGER}, #{height,jdbcType=DOUBLE}, #{kuang,jdbcType=DOUBLE}, 
+      #{yroute,jdbcType=DOUBLE}, #{sdwidth,jdbcType=DOUBLE}, #{sdheight,jdbcType=DOUBLE}, 
+      #{sidethick,jdbcType=DOUBLE}, #{hole,jdbcType=DOUBLE}, #{ribthick,jdbcType=DOUBLE}, 
+      #{hnumber,jdbcType=DOUBLE}, #{snumber,jdbcType=DOUBLE})
+  </insert>
+  <update id="updateById" parameterType="com.nuaa.bean.UpWeight">
+    update mt_upweight
+    set Height = #{height,jdbcType=DOUBLE},
+      Kuang = #{kuang,jdbcType=DOUBLE},
+      yroute = #{yroute,jdbcType=DOUBLE},
+      sdWidth = #{sdwidth,jdbcType=DOUBLE},
+      sdHeight = #{sdheight,jdbcType=DOUBLE},
+      sideThick = #{sidethick,jdbcType=DOUBLE},
+      hole = #{hole,jdbcType=DOUBLE},
+      ribThick = #{ribthick,jdbcType=DOUBLE},
+      hNumber = #{hnumber,jdbcType=DOUBLE},
+      sNumber = #{snumber,jdbcType=DOUBLE}
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

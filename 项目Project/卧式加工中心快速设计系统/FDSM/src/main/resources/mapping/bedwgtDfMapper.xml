@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.bedwgtDfDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.bedwgtDf">
+    <id column="bid" jdbcType="INTEGER" property="bid" />
+    <result column="b_length" jdbcType="INTEGER" property="bLength" />
+    <result column="b_width" jdbcType="INTEGER" property="bWidth" />
+    <result column="b_height" jdbcType="INTEGER" property="bHeight" />
+    <result column="b_cd" jdbcType="INTEGER" property="bCd" />
+    <result column="b_xL" jdbcType="INTEGER" property="bXl" />
+    <result column="b_xD" jdbcType="INTEGER" property="bXd" />
+    <result column="b_zL" jdbcType="INTEGER" property="bZl" />
+    <result column="b_zD" jdbcType="INTEGER" property="bZd" />
+    <result column="b_ribThick" jdbcType="INTEGER" property="bRibthick" />
+    <result column="b_hole" jdbcType="INTEGER" property="bHole" />
+    <result column="b_structure" jdbcType="INTEGER" property="bStructure" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bid, b_length, b_width, b_height, b_cd, b_xL, b_xD, b_zL, b_zD, b_ribThick, b_hole, 
+    b_structure
+  </sql>
+  <select id="selectBedAll" resultMap="BaseResultMap">
+    select *  from mt_bedwgt_df
+    <where>
+			<if test="bid !='' and bid !=null">
+				and bid &gt;= #{bid} limit 11 
+			</if>
+	</where>	
+  </select>
+  
+  <delete id="deleteBedById" parameterType="java.lang.Integer">
+    delete from mt_bedwgt_df
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.nuaa.bean.bedwgtDf">
+    insert into mt_bedwgt_df (bid, b_length, b_width, 
+      b_height, b_cd, b_xL, 
+      b_xD, b_zL, b_zD, b_ribThick, 
+      b_hole, b_structure)
+    values (#{bid,jdbcType=INTEGER}, #{bLength,jdbcType=INTEGER}, #{bWidth,jdbcType=INTEGER}, 
+      #{bHeight,jdbcType=INTEGER}, #{bCd,jdbcType=INTEGER}, #{bXl,jdbcType=INTEGER}, 
+      #{bXd,jdbcType=INTEGER}, #{bZl,jdbcType=INTEGER}, #{bZd,jdbcType=INTEGER}, #{bRibthick,jdbcType=INTEGER}, 
+      #{bHole,jdbcType=INTEGER}, #{bStructure,jdbcType=INTEGER})
+  </insert>
+</mapper>

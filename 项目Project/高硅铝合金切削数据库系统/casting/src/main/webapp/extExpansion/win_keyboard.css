@@ -1,0 +1,234 @@
+.btn_input_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/input_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_input_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/input_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num1_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num1_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num1_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num1_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num2_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num2_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num2_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num2_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num3_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num3_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num3_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num3_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num4_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num4_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num4_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num4_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num5_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num5_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num5_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num5_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num6_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num6_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num6_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num6_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num7_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num7_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num7_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num7_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num8_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num8_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num8_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num8_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num9_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num9_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num9_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num9_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num0_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/num0_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_num0_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/num0_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_backspace_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/backspace_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_backspace_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/backspace_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}
+.btn_clear_mouseout {   
+	border-right:#d2e9ff 3px solid;
+	border-top:#d2e9ff 3px solid;
+	background-image: url(../images/win_keyboard/clear_mouseout.png);
+	border-left:#d2e9ff 3px solid;
+	border-bottom:#d2e9ff 3px solid;
+	width:70px;
+	height:70px;
+}
+.btn_clear_mouseover {   
+	border-right:#d2e9ff 0px solid;
+	border-top:#d2e9ff 0px solid;
+	background-image: url(../images/win_keyboard/clear_mouseover.png);
+	border-left:#d2e9ff 0px solid;
+	border-bottom:#d2e9ff 0px solid;
+	width:70px;
+	height:70px;
+}

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="nuaa.casting.dao.EmpDao">
+
+	<insert id="saveUser" parameterType="nuaa.casting.service.User">
+		insert into test values(#{password},#{username},#{userrole},#{stuff_num},
+								#{phonenumber},#{remark})	
+	</insert>
+
+	<select id="findAll" resultType="nuaa.casting.service.User">
+		select * from test
+	</select>
+	
+	<select id="findBystuff_num" parameterType="String" resultType="nuaa.casting.service.User">
+		select * from test where stuff_num=#{stuff_num}
+	</select>
+	
+	<update id="updateUser" parameterType="String">
+        update test set username=#{username},phonenumber=#{phonenumber},password=#{password},
+        remark=#{remark},userrole=#{userrole} where stuff_num=#{stuff_num}
+    </update>
+    
+    
+    <update id="updateUser_1" parameterType="String">
+        update test set username=#{username},phonenumber=#{phonenumber},password=#{password},
+        remark=#{remark} where stuff_num=#{stuff_num}
+    </update>
+    
+    
+	
+	<delete id="deleteUser" parameterType="java.util.List">
+         delete from test where stuff_num in ${stuff_num}<!-- $原样输出符号 -->
+    </delete>
+    
+    <insert id="saveCastingContent" parameterType="nuaa.casting.service.CastingContent">
+		insert into CASTINGCONTENT values(
+			#{castingnumber},     #{partsnumber},      #{structuretype},
+			#{castingname},       #{editor},           #{partsdrawing},
+			#{pouringweight},     #{castingmethod},    #{castingprocessdesign},
+			#{riserdesign},       #{pouringtemperature},
+			#{boxtime},	      	  #{heatprocess},  	   #{smeltingprocess},
+			#{inoculationprocess},#{qualitytest},      #{materialnumber},
+			#{mainthickness},     #{castingweight},    #{acceptcondition},
+			#{gatingsystemdesign},#{chilldesign},      #{pouringtime},
+			#{chemicalcomponent}, #{physicaltreatment},#{physicalparameter},
+			#{defecttype})	
+	</insert>
+    
+    <select id="readCastingContentBycastingnumber" parameterType="String" resultType="nuaa.casting.service.CastingContent">
+		select * from CASTINGCONTENT where CASTINGNUMBER=#{castingnumber}
+	</select>
+	
+	
+	
+	
+	<select id="readallCastingContent" parameterType="int"  resultType="nuaa.casting.service.CastingContent">  
+		select * from (select a.*,ROWNUM RN from (select * from CASTINGCONTENT) a )
+		   where RN between #{start} and #{limit}  		
+	</select>
+	
+	<select id="readallCastingContentcount" resultType="int">
+		select count(*) from CASTINGCONTENT
+	</select>
+	
+	
+	
+	<select id="readpartCastingContent" resultType="nuaa.casting.service.CastingContent">  
+		select * from (select a.*,ROWNUM RN from (select * from CASTINGCONTENT where ${findtype} like '%${findstring}%') a )
+		   where RN between #{start} and #{limit}  		
+	</select>
+	
+	<select id="readpartCastingContentcount" parameterType="String" resultType="int">
+		select count(*) from CASTINGCONTENT where ${findtype} like '%${findstring}%'
+	</select>
+	
+    <delete id="castinginforgriddel" parameterType="String">
+         delete from CASTINGCONTENT where castingnumber in ${castinginforgriddel}<!-- $原样输出符号 -->
+    </delete>
+    
+    <update id="modCastingContent" parameterType="String">
+        update CASTINGCONTENT set  
+        partsnumber=#{partsnumber},              structuretype=#{structuretype},
+		castingname=#{castingname},              editor=#{editor},           			partsdrawing=#{partsdrawing},
+		pouringweight=#{pouringweight},          castingmethod=#{castingmethod},    	castingprocessdesign=#{castingprocessdesign},
+		riserdesign=#{riserdesign},       	     pouringtemperature=#{pouringtemperature},
+		boxtime=#{boxtime},	             		 heatprocess=#{heatprocess},  	   		smeltingprocess=#{smeltingprocess},
+		inoculationprocess=#{inoculationprocess},qualitytest=#{qualitytest},      		materialnumber=#{materialnumber},
+		mainthickness=#{mainthickness},          castingweight=#{castingweight},        acceptcondition=#{acceptcondition},
+		gatingsystemdesign=#{gatingsystemdesign},chilldesign=#{chilldesign},            pouringtime=#{pouringtime},
+		chemicalcomponent=#{chemicalcomponent},  physicaltreatment=#{physicaltreatment},physicalparameter=#{physicalparameter},
+		defecttype=#{defecttype}
+        where castingnumber=#{castingnumber}
+    </update>
+    
+    
+    <select id="readallMaterialPropertiesContent" parameterType="int"  resultType="nuaa.casting.service.MaterialProperties">  
+		select * from (select a.*,ROWNUM RN from (select * from materialproperties) a )
+		   where RN between #{start} and #{limit}  		
+	</select>
+	
+	<select id="readallMaterialPropertiesContentcount" resultType="int">
+		select count(*) from materialproperties
+	</select>
+    
+    <select id="readpartMaterialPropertiesContent" resultType="nuaa.casting.service.MaterialProperties">  
+		select * from (select a.*,ROWNUM RN from (select * from materialproperties where ${findtype} like '%${findstring}%') a )
+		   where RN between #{start} and #{limit}  		
+	</select>
+	
+	<select id="readpartMaterialPropertiesContentcount" parameterType="String" resultType="int">
+		select count(*) from materialproperties where ${findtype} like '%${findstring}%'
+	</select>
+    
+    
+    <delete id="mpinforgriddel" parameterType="String">
+         delete from materialproperties where materialbrand=#{materialbrand}
+    </delete>
+    
+    <update id="modMaterialPropertiesContent" parameterType="String">
+        update materialproperties set materialcategory=#{materialcategory},tensilestrength=#{tensilestrength},
+        extensionstrength=#{extensionstrength}, elongation=#{elongation},hardness=#{hardness}, mainmatrixorganization=#{mainmatrixorganization},
+        distributionratio=#{distributionratio},melting=#{melting},inoculation=#{inoculation},spheroidizing=#{spheroidizing},
+        annealing=#{annealing} where materialbrand=#{materialbrand}
+    </update>
+    
+    <select id="readMaterialPropertiesContentBymaterialbrand" parameterType="String" resultType="nuaa.casting.service.MaterialProperties">
+		select * from materialproperties where materialbrand=#{materialbrand}
+	</select>
+    
+    <insert id="saveMaterialProperties" parameterType="nuaa.casting.service.MaterialProperties">
+		insert into materialproperties values(#{materialcategory},#{materialbrand},#{tensilestrength},#{extensionstrength},
+								#{elongation},#{hardness},#{mainmatrixorganization},
+								#{adddistributionratio},#{addmelting},#{addinoculation},#{addspheroidizing},#{addannealing}
+								)	
+	</insert>
+    
+    
+    <select id="readAllDraftInfor" resultType="nuaa.casting.service.BMpropara">
+		select * from draft
+	</select>
+    
+    <select id="readPartDraftInfor" parameterType="String" resultType="nuaa.casting.service.BMpropara">
+		select * from draft where castingmodeling like '%${bmfindstring}%'
+	</select>
+    
+    <delete id="deletebmpropara" parameterType="String">
+         delete from draft where castingmodeling=#{castingmodeling} and sizecondition=#{sizecondition} and draftremarks=#{draftremarks}
+    </delete>
+    
+    <insert id="addbmpropara" parameterType="nuaa.casting.service.BMpropara">
+		insert into draft values(#{castingmodeling},#{sizecondition},#{draftangle},#{draftlength},#{draftremarks})	
+	</insert>
+	
+	
+	<select id="readAllPouringInfor" resultType="nuaa.casting.service.JZpropara">
+		select * from pouring
+	</select>
+	
+	<delete id="deletejzpropara" parameterType="String">
+         delete from pouring where pouringweight=#{pouringweight} and njdnum=#{njdnum}
+    </delete>
+	
+	<insert id="addjzpropara" parameterType="nuaa.casting.service.JZpropara">
+		insert into pouring values(#{pouringweight},#{njdnum},
+									#{njda},#{njdb},#{njdc},
+									#{hjda},#{hjdb},#{hjdc},
+									#{zjdd},#{pouringremarks})	
+	</insert>
+    
+    
+    
+    <select id="readAllRiserInfor" resultType="nuaa.casting.service.MKpropara">
+		select * from riser
+	</select>
+    
+    <delete id="deletemkpropara" parameterType="String">
+         delete from riser where castingmodulus=#{castingmodulus}
+    </delete>
+    
+    <insert id="addmkpropara" parameterType="nuaa.casting.service.MKpropara">
+		insert into riser values(#{castingmodulus},#{slowpourd},#{quickpourd},#{squaremk},#{rectanglemk},#{mkremarks})	
+	</insert>
+    
+    
+    <select id="readAllLXInfor" resultType="nuaa.casting.service.LXpropara">
+		select * from lxcontent
+	</select>
+    
+    
+    <delete id="lxinforgriddel" parameterType="String">
+         delete from lxcontent where partnumber=#{partnumber}
+    </delete>
+    
+    <select id="readpartlxinfor" parameterType="String" resultType="nuaa.casting.service.LXpropara">
+		select * from lxcontent where ${findtype} like '%${findstring}%'
+	</select>
+    
+    <update id="modlxpropara" parameterType="String">
+        update lxcontent set parttype=#{parttype},material=#{material},partouterdiam=#{partouterdiam},outersurfmachallow=#{outersurfmachallow},
+								innersurfmachallow=#{innersurfmachallow},endmachallow=#{endmachallow},rotatspeed=#{rotatspeed},
+								coating=#{coating},operattemper=#{operattemper},pourtemper=#{pourtemper},releasetemper=#{releasetemper},
+        							molddryingpro=#{molddryingpro} where partnumber=#{partnumber}
+    </update>
+    
+     <select id="lxreadbypartnumber" resultType="nuaa.casting.service.LXpropara">
+		select * from lxcontent where partnumber=#{partnumber}
+	</select>
+    
+    <insert id="addlxpropara" parameterType="nuaa.casting.service.LXpropara">
+		insert into lxcontent values(#{parttype},#{material},#{partnumber},#{partouterdiam},#{outersurfmachallow},#{innersurfmachallow},
+				#{endmachallow},#{rotatspeed},#{coating},#{operattemper},#{pourtemper},#{releasetemper},#{molddryingpro})	
+	</insert>
+    
+    
+</mapper>
+
+
+
+
+

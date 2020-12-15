@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.WorkpieceDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Workpiece">
+    <id column="workid" jdbcType="INTEGER" property="workid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="zhuantai_maxd" jdbcType="VARCHAR" property="zhuantaiMaxd" />
+    <result column="zhuantai_h" jdbcType="VARCHAR" property="zhuantaiH" />
+    <result column="gongjian_maxd" jdbcType="INTEGER" property="gongjianMaxd" />
+    <result column="gongjian_h" jdbcType="INTEGER" property="gongjianH" />
+    <result column="over_height" jdbcType="VARCHAR" property="overHeight" />
+    <result column="fendu" jdbcType="VARCHAR" property="fendu" />
+    <result column="re_ratio" jdbcType="VARCHAR" property="reRatio" />
+    <result column="zaihe" jdbcType="INTEGER" property="zaihe" />
+    <result column="max_speed" jdbcType="VARCHAR" property="maxSpeed" />
+    <result column="cutting_f" jdbcType="VARCHAR" property="cuttingF" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    workid, type, zhuantai_maxd, zhuantai_h, gongjian_maxd, gongjian_h, over_height, 
+    fendu, re_ratio, zaihe, max_speed, cutting_f, course
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mt_workpiece
+    where workid = #{workid,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 条件查询 -->
+  <select id="findSelectiveWp"  resultType="Workpiece">
+		SELECT * FROM mt_workpiece 
+	<where>
+		<if test="type!=null and type!=''">
+			and type = #{type}
+		</if>
+		<if test="workid!=0 and workid!=null" >
+			and workid = #{workid}
+		</if>
+		<if test="course!=null and course!=''">
+			and course = #{course}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 模糊条件查询 -->
+  <select id="findWpMHSelective"  resultType="Workpiece">
+		SELECT * FROM mt_workpiece 
+	<where>
+		<if test="type!=null and type!=''">
+			and type like concat('%',#{type},'%')	 
+		</if>
+		<if test="workid!=0 and workid!=null" >
+			and workid = #{workid}
+		</if>
+		<if test="course!=null and course!=''">
+			and course like concat('%',#{course},'%')
+		</if>
+	</where>
+  </select>
+  
+  <!-- Reason方法 -->
+  <select id="findReasonWp"  resultType="Workpiece">
+		SELECT * FROM mt_workpiece 
+		where gongjian_maxd &gt;= #{gongjianMaxd} and gongjian_h &gt;= #{gongjianH} 
+		and zaihe &gt;= #{zaihe} order by gongjian_maxd limit 5
+  </select>
+  
+  <delete id="deleteWpById" parameterType="java.lang.Integer">
+    delete from mt_workpiece
+    where workid = #{workid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertWp" parameterType="com.nuaa.bean.Workpiece">
+    insert into mt_workpiece (workid, type, zhuantai_maxd, 
+      zhuantai_h, gongjian_maxd, gongjian_h, 
+      over_height, fendu, re_ratio, 
+      zaihe, max_speed, cutting_f, 
+      course)
+    values (#{workid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{zhuantaiMaxd,jdbcType=VARCHAR}, 
+      #{zhuantaiH,jdbcType=VARCHAR}, #{gongjianMaxd,jdbcType=INTEGER}, #{gongjianH,jdbcType=INTEGER}, 
+      #{overHeight,jdbcType=VARCHAR}, #{fendu,jdbcType=VARCHAR}, #{reRatio,jdbcType=VARCHAR}, 
+      #{zaihe,jdbcType=INTEGER}, #{maxSpeed,jdbcType=VARCHAR}, #{cuttingF,jdbcType=VARCHAR}, 
+      #{course,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateWpByIdSelective" parameterType="com.nuaa.bean.Workpiece">
+    update mt_workpiece
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuantaiMaxd != null">
+        zhuantai_maxd = #{zhuantaiMaxd,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuantaiH != null">
+        zhuantai_h = #{zhuantaiH,jdbcType=VARCHAR},
+      </if>
+      <if test="gongjianMaxd != null">
+        gongjian_maxd = #{gongjianMaxd,jdbcType=INTEGER},
+      </if>
+      <if test="gongjianH != null">
+        gongjian_h = #{gongjianH,jdbcType=INTEGER},
+      </if>
+      <if test="overHeight != null">
+        over_height = #{overHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="fendu != null">
+        fendu = #{fendu,jdbcType=VARCHAR},
+      </if>
+      <if test="reRatio != null">
+        re_ratio = #{reRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="zaihe != null">
+        zaihe = #{zaihe,jdbcType=INTEGER},
+      </if>
+      <if test="maxSpeed != null">
+        max_speed = #{maxSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="cuttingF != null">
+        cutting_f = #{cuttingF,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null">
+        course = #{course,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where workid = #{workid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateWpById" parameterType="com.nuaa.bean.Workpiece">
+    update mt_workpiece
+    set type = #{type,jdbcType=VARCHAR},
+      zhuantai_maxd = #{zhuantaiMaxd,jdbcType=VARCHAR},
+      zhuantai_h = #{zhuantaiH,jdbcType=VARCHAR},
+      gongjian_maxd = #{gongjianMaxd,jdbcType=INTEGER},
+      gongjian_h = #{gongjianH,jdbcType=INTEGER},
+      over_height = #{overHeight,jdbcType=VARCHAR},
+      fendu = #{fendu,jdbcType=VARCHAR},
+      re_ratio = #{reRatio,jdbcType=VARCHAR},
+      zaihe = #{zaihe,jdbcType=INTEGER},
+      max_speed = #{maxSpeed,jdbcType=VARCHAR},
+      cutting_f = #{cuttingF,jdbcType=VARCHAR},
+      course = #{course,jdbcType=VARCHAR}
+    where workid = #{workid,jdbcType=INTEGER}
+  </update>
+</mapper>

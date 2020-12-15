@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>加载STL模型 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="libs/three.js"></script>
+    <script type="text/javascript" src="libs/STLLoader.js"></script>
+<script type="text/javascript" src="libs/OrbitControls.js"></script>
+    <script type="text/javascript" src="libs/stats.js"></script>
+    <script type="text/javascript" src="libs/dat.gui.js"></script>
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div id="Stats-output">
+</div>
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+
+<!-- Javascript code that runs our Three.js examples -->
+<script type="text/javascript">
+
+    // once everything is loaded, we run our Three.js stuff.
+    function init() {
+
+        var stats = initStats();
+
+        // create a scene, that will hold all our elements such as objects, cameras and lights.
+        var scene = new THREE.Scene();
+
+        // create a camera, which defines where we're looking at.
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100000);
+        var axes = new THREE.AxisHelper(20);//新建坐标辅助对象
+        scene.add(axes);//将坐标辅助对象添加到场景中
+        // create a render and set the size
+        var webGLRenderer = new THREE.WebGLRenderer();
+        webGLRenderer.setClearColor(new THREE.Color(0x000, 0.5));
+        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        webGLRenderer.shadowMapEnabled = true;  // 投影效果
+
+        // position and point the camera to the center of the scene
+        camera.position.x = 20;
+        camera.position.y = 150;
+        camera.position.z = 250;
+        
+      //  camera.lookAt(scene.position);
+        camera.lookAt(new THREE.Vector3(0, 1, 0));  //设置摄像机焦点
+
+        // add spotlight for the shadows
+        var spotLight = new THREE.PointLight(0xffffff);
+        spotLight.position.set(100, 100, 100);
+        scene.add(spotLight);
+
+        var controls;
+        controls = new THREE.OrbitControls( camera );
+        controls.autoRotateSpeed = 4;   
+        
+        // add the output of the renderer to the html element
+        document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
+
+        // call the render function
+        var step = 0;
+
+
+        // setup the control gui
+        var controls = new function () {
+            // we need the first child, since it's a multimaterial
+
+
+        };
+
+        var group;
+        var gui = new dat.GUI();
+
+
+        // model from http://www.thingiverse.com/thing:69709
+        var loader = new THREE.STLLoader();
+        var group = new THREE.Object3D();
+        //loader.load("assets/models/SolidHead_2_lowPoly_42k.stl", function (geometry) {
+        loader.load("assets/models/bed.STL", function (geometry) {	
+            console.log(geometry);
+            var mat = new THREE.MeshLambertMaterial({color: 0x7777ff});
+            group = new THREE.Mesh(geometry, mat);
+            group.rotation.x = -0.5 * Math.PI;
+            group.scale.set(0.05, 0.05, 0.05);
+            scene.add(group);
+        });
+
+
+       render();
+
+
+        function render() {
+            stats.update();
+
+            if (group) {
+              //  group.rotation.z += 0.004;
+               //  group.rotation.x+=0.006;
+            }
+
+            // render using requestAnimationFrame
+            requestAnimationFrame(render);
+          //  controls.update();
+            webGLRenderer.render(scene, camera);
+        }
+
+        function initStats() {
+
+            var stats = new Stats();
+            stats.setMode(0); // 0: fps, 1: ms
+
+            // Align top-left
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+
+            document.getElementById("Stats-output").appendChild(stats.domElement);
+
+            return stats;
+        }
+    }
+    window.onload = init;
+</script>
+</body>
+</html>

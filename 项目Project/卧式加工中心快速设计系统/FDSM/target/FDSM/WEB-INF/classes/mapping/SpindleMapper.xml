@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.SpindleDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Spindle">
+    <id column="sindle_id" jdbcType="INTEGER" property="sindleId" />
+    <result column="sd_type" jdbcType="VARCHAR" property="sdType" />
+    <result column="kinds" jdbcType="VARCHAR" property="kinds" />
+    <result column="power_min" jdbcType="DOUBLE" property="powerMin" />
+    <result column="power_max" jdbcType="DOUBLE" property="powerMax" />
+    <result column="power" jdbcType="VARCHAR" property="power" />
+    <result column="max_speed" jdbcType="INTEGER" property="maxSpeed" />
+    <result column="torsion" jdbcType="VARCHAR" property="torsion" />
+    <result column="zhuikong" jdbcType="VARCHAR" property="zhuikong" />
+    <result column="x_length" jdbcType="VARCHAR" property="xLength" />
+    <result column="y_length" jdbcType="VARCHAR" property="yLength" />
+    <result column="duanmian_zhuantai" jdbcType="VARCHAR" property="duanmianZhuantai" />
+    <result column="zhongxin_min" jdbcType="VARCHAR" property="zhongxinMin" />
+    <result column="zhongxin_max" jdbcType="VARCHAR" property="zhongxinMax" />
+    <result column="zhongxin" jdbcType="VARCHAR" property="zhongxin" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sindle_id, sd_type, kinds, power_min, power_max, power, max_speed, torsion, zhuikong, 
+    x_length, y_length, duanmian_zhuantai, zhongxin_min, zhongxin_max,zhongxin, course
+  </sql>
+  
+  <!-- 条件查询 -->
+  <select id="findSelectiveSd"  resultType="Spindle">
+		SELECT * FROM mt_zhuzhou 
+	<where>
+		<if test="kinds!=null and kinds!=''">
+			and kinds = #{kinds}
+		</if>
+		<if test="sindleId!=0 and sindleId!=null" >
+			and sindle_id = #{sindleId}
+		</if>
+		<if test="sdType!=null and sdType!=''" >
+			and sd_type = #{sdType}
+		</if>
+		<if test="course!=null and course!=''">
+			and course = #{course}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 模糊查询 -->
+  <select id="findSelectiveMHSd"  resultType="Spindle">
+		SELECT * FROM mt_zhuzhou 
+	<where>
+		<if test="kinds!=null and kinds!=''">
+			and kinds like concat('%',#{kinds},'%')	 
+		</if>
+		<if test="sindleId!=0 and sindleId!=null" >
+			and sindle_id = #{sindleId}
+		</if>
+		<if test="sdType!=null and sdType!=''" >
+			and sd_type like concat('%',#{sdType},'%')	
+		</if>
+		<if test="course!=null and course!=''">
+			and course like concat('%',#{course},'%')	
+		</if>
+	</where>
+  </select>
+  <!-- reasonFC -->
+  <select id="findReasonSd"  resultType="Spindle">
+		SELECT * FROM mt_zhuzhou 
+		where power_min &gt;= #{powerMin} and power_max &gt;= #{powerMax}
+			
+				and max_speed &gt;= #{maxSpeed}
+			
+		order by power_min 
+  </select>
+  
+  <delete id="deleteSdById" parameterType="java.lang.Integer">
+    delete from mt_zhuzhou
+    where sindle_id = #{sindleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSd" parameterType="com.nuaa.bean.Spindle">
+    insert into mt_zhuzhou (sindle_id, sd_type, kinds, 
+      power_min, power_max, power, 
+      max_speed, torsion, zhuikong, 
+      x_length, y_length, duanmian_zhuantai, 
+      zhongxin_min, zhongxin_max,zhongxin, course
+      )
+    values (#{sindleId,jdbcType=INTEGER}, #{sdType,jdbcType=VARCHAR}, #{kinds,jdbcType=VARCHAR}, 
+      #{powerMin,jdbcType=DOUBLE}, #{powerMax,jdbcType=DOUBLE}, #{power,jdbcType=VARCHAR}, 
+      #{maxSpeed,jdbcType=INTEGER}, #{torsion,jdbcType=VARCHAR}, #{zhuikong,jdbcType=VARCHAR}, 
+      #{xLength,jdbcType=VARCHAR}, #{yLength,jdbcType=VARCHAR}, #{duanmianZhuantai,jdbcType=VARCHAR}, 
+      #{zhongxinMin,jdbcType=VARCHAR}, #{zhongxinMax,jdbcType=VARCHAR},#{zhongxin,jdbcType=VARCHAR}, #{course,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateSdByIdSelective" parameterType="com.nuaa.bean.Spindle">
+    update mt_zhuzhou
+    <set>
+      <if test="sdType != null">
+        sd_type = #{sdType,jdbcType=VARCHAR},
+      </if>
+      <if test="kinds != null">
+        kinds = #{kinds,jdbcType=VARCHAR},
+      </if>
+      <if test="powerMin != null">
+        power_min = #{powerMin,jdbcType=DOUBLE},
+      </if>
+      <if test="powerMax != null">
+        power_max = #{powerMax,jdbcType=DOUBLE},
+      </if>
+      <if test="power != null">
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSpeed != null">
+        max_speed = #{maxSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="torsion != null">
+        torsion = #{torsion,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuikong != null">
+        zhuikong = #{zhuikong,jdbcType=VARCHAR},
+      </if>
+      <if test="xLength != null">
+        x_length = #{xLength,jdbcType=VARCHAR},
+      </if>
+      <if test="yLength != null">
+        y_length = #{yLength,jdbcType=VARCHAR},
+      </if>
+      <if test="duanmianZhuantai != null">
+        duanmian_zhuantai = #{duanmianZhuantai,jdbcType=VARCHAR},
+      </if>
+      <if test="zhongxinMin != null">
+        zhongxin_min = #{zhongxinMin,jdbcType=VARCHAR},
+      </if>
+      <if test="zhongxinMax != null">
+        zhongxin_max = #{zhongxinMax,jdbcType=VARCHAR},
+      </if>
+      <if test="zhongxin != null">
+        zhongxin = #{zhongxin,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null">
+        course = #{course,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sindle_id = #{sindleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateSdById" parameterType="com.nuaa.bean.Spindle">
+    update mt_zhuzhou
+    set sd_type = #{sdType,jdbcType=VARCHAR},
+      kinds = #{kinds,jdbcType=VARCHAR},
+      power_min = #{powerMin,jdbcType=DOUBLE},
+      power_max = #{powerMax,jdbcType=DOUBLE},
+      power = #{power,jdbcType=VARCHAR},
+      max_speed = #{maxSpeed,jdbcType=INTEGER},
+      torsion = #{torsion,jdbcType=VARCHAR},
+      zhuikong = #{zhuikong,jdbcType=VARCHAR},
+      x_length = #{xLength,jdbcType=VARCHAR},
+      y_length = #{yLength,jdbcType=VARCHAR},
+      duanmian_zhuantai = #{duanmianZhuantai,jdbcType=VARCHAR},
+      zhongxin_min = #{zhongxinMin,jdbcType=VARCHAR},
+      zhongxin_max = #{zhongxinMax,jdbcType=VARCHAR},
+      zhongxin = #{zhongxin,jdbcType=VARCHAR},
+      course = #{course,jdbcType=VARCHAR}
+    where sindle_id = #{sindleId,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

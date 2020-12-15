@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.WorkbedDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Workbed">
+    <id column="bedid" jdbcType="INTEGER" property="bedid" />
+    <result column="beddaihao" jdbcType="VARCHAR" property="beddaihao" />
+    <result column="structure" jdbcType="VARCHAR" property="structure" />
+    <result column="material" jdbcType="VARCHAR" property="material" />
+    <result column="length" jdbcType="INTEGER" property="length" />
+    <result column="width" jdbcType="INTEGER" property="width" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="Xroute" jdbcType="VARCHAR" property="xroute" />
+    <result column="Yroute" jdbcType="VARCHAR" property="yroute" />
+    <result column="Zroute" jdbcType="VARCHAR" property="zroute" />
+    <result column="z_distance" jdbcType="INTEGER" property="zDistance" />
+    <result column="x_distance" jdbcType="INTEGER" property="xDistance" />
+    <result column="caoshen" jdbcType="VARCHAR" property="caoshen" />
+    <result column="caokuan" jdbcType="INTEGER" property="caokuan" />
+    <result column="caolength" jdbcType="VARCHAR" property="caolength" />
+    <result column="holed" jdbcType="INTEGER" property="holed" />
+    <result column="rib" jdbcType="VARCHAR" property="rib" />
+    <result column="kuanheng" jdbcType="VARCHAR" property="kuanheng" />
+    <result column="kuanshu" jdbcType="VARCHAR" property="kuanshu" />
+    <result column="zhaiheng" jdbcType="VARCHAR" property="zhaiheng" />
+    <result column="zhaishu" jdbcType="VARCHAR" property="zhaishu" />
+    <result column="ribthick" jdbcType="INTEGER" property="ribthick" />
+    <result column="chip" jdbcType="VARCHAR" property="chip" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bedid, beddaihao, structure, material, length, width, height, Xroute, Yroute, Zroute, 
+    z_distance, x_distance, caoshen, caokuan, caolength, holed, rib, kuanheng, kuanshu, 
+    zhaiheng, zhaishu, ribthick, chip, course
+  </sql>
+  
+  <!-- 条件查询 -->
+  <select id="findWbSelective"  resultType="Workbed">
+		SELECT * FROM mt_bed 
+	<where>
+		<if test="bedid!='' and bedid!=null">
+			and bedid = #{bedid}
+		</if>
+		<if test="course!=null and course!=''">
+			and course = #{course}
+		</if>
+	</where>
+  </select>
+  	<!-- 模糊条件查询 -->
+  <select id="findWbMHSelective"  resultType="Workbed">
+		SELECT * FROM mt_bed 
+	<where>
+		<if test="bedid!='' and bedid!=null">
+			and bedid like concat('%',#{bedid},'%')
+		</if>
+		<if test="course!=null and course!=''">
+			and course like concat('%',#{course},'%')
+		</if>
+	</where>
+  </select>
+  
+  <!-- 查询总记录数 -->
+  <select id="getCountWb" resultType="int">
+		select count(*) from mt_bed
+  </select>
+  
+  <delete id="deleteWbById" parameterType="java.lang.Integer">
+    delete from mt_bed
+    where bedid = #{bedid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertWb" parameterType="com.nuaa.bean.Workbed">
+    insert into mt_bed (bedid, beddaihao, structure, 
+      material, length, width, 
+      height, Xroute, Yroute, 
+      Zroute, z_distance, x_distance, 
+      caoshen, caokuan, caolength, 
+      holed, rib, kuanheng, 
+      kuanshu, zhaiheng, zhaishu, 
+      ribthick, chip, course
+      )
+    values (#{bedid,jdbcType=INTEGER}, #{beddaihao,jdbcType=VARCHAR}, #{structure,jdbcType=VARCHAR}, 
+      #{material,jdbcType=VARCHAR}, #{length,jdbcType=INTEGER}, #{width,jdbcType=INTEGER}, 
+      #{height,jdbcType=INTEGER}, #{xroute,jdbcType=VARCHAR}, #{yroute,jdbcType=VARCHAR}, 
+      #{zroute,jdbcType=VARCHAR}, #{zDistance,jdbcType=INTEGER}, #{xDistance,jdbcType=INTEGER}, 
+      #{caoshen,jdbcType=VARCHAR}, #{caokuan,jdbcType=INTEGER}, #{caolength,jdbcType=VARCHAR}, 
+      #{holed,jdbcType=INTEGER}, #{rib,jdbcType=VARCHAR}, #{kuanheng,jdbcType=VARCHAR}, 
+      #{kuanshu,jdbcType=VARCHAR}, #{zhaiheng,jdbcType=VARCHAR}, #{zhaishu,jdbcType=VARCHAR}, 
+      #{ribthick,jdbcType=INTEGER}, #{chip,jdbcType=VARCHAR}, #{course,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateWbByIdSelective" parameterType="com.nuaa.bean.Workbed">
+    update mt_bed
+    <set>
+      <if test="beddaihao != null">
+        beddaihao = #{beddaihao,jdbcType=VARCHAR},
+      </if>
+      <if test="structure != null">
+        structure = #{structure,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        material = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="xroute != null">
+        Xroute = #{xroute,jdbcType=VARCHAR},
+      </if>
+      <if test="yroute != null">
+        Yroute = #{yroute,jdbcType=VARCHAR},
+      </if>
+      <if test="zroute != null">
+        Zroute = #{zroute,jdbcType=VARCHAR},
+      </if>
+      <if test="zDistance != null">
+        z_distance = #{zDistance,jdbcType=INTEGER},
+      </if>
+      <if test="xDistance != null">
+        x_distance = #{xDistance,jdbcType=INTEGER},
+      </if>
+      <if test="caoshen != null">
+        caoshen = #{caoshen,jdbcType=VARCHAR},
+      </if>
+      <if test="caokuan != null">
+        caokuan = #{caokuan,jdbcType=INTEGER},
+      </if>
+      <if test="caolength != null">
+        caolength = #{caolength,jdbcType=VARCHAR},
+      </if>
+      <if test="holed != null">
+        holed = #{holed,jdbcType=INTEGER},
+      </if>
+      <if test="rib != null">
+        rib = #{rib,jdbcType=VARCHAR},
+      </if>
+      <if test="kuanheng != null">
+        kuanheng = #{kuanheng,jdbcType=VARCHAR},
+      </if>
+      <if test="kuanshu != null">
+        kuanshu = #{kuanshu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhaiheng != null">
+        zhaiheng = #{zhaiheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhaishu != null">
+        zhaishu = #{zhaishu,jdbcType=VARCHAR},
+      </if>
+      <if test="ribthick != null">
+        ribthick = #{ribthick,jdbcType=INTEGER},
+      </if>
+      <if test="chip != null">
+        chip = #{chip,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null">
+        course = #{course,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bedid = #{bedid,jdbcType=INTEGER}
+  </update>
+  <update id="updateWbById" parameterType="com.nuaa.bean.Workbed">
+    update mt_bed
+    set beddaihao = #{beddaihao,jdbcType=VARCHAR},
+      structure = #{structure,jdbcType=VARCHAR},
+      material = #{material,jdbcType=VARCHAR},
+      length = #{length,jdbcType=INTEGER},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      Xroute = #{xroute,jdbcType=VARCHAR},
+      Yroute = #{yroute,jdbcType=VARCHAR},
+      Zroute = #{zroute,jdbcType=VARCHAR},
+      z_distance = #{zDistance,jdbcType=INTEGER},
+      x_distance = #{xDistance,jdbcType=INTEGER},
+      caoshen = #{caoshen,jdbcType=VARCHAR},
+      caokuan = #{caokuan,jdbcType=INTEGER},
+      caolength = #{caolength,jdbcType=VARCHAR},
+      holed = #{holed,jdbcType=INTEGER},
+      rib = #{rib,jdbcType=VARCHAR},
+      kuanheng = #{kuanheng,jdbcType=VARCHAR},
+      kuanshu = #{kuanshu,jdbcType=VARCHAR},
+      zhaiheng = #{zhaiheng,jdbcType=VARCHAR},
+      zhaishu = #{zhaishu,jdbcType=VARCHAR},
+      ribthick = #{ribthick,jdbcType=INTEGER},
+      chip = #{chip,jdbcType=VARCHAR},
+      course = #{course,jdbcType=VARCHAR}
+    where bedid = #{bedid,jdbcType=INTEGER}
+  </update>
+</mapper>

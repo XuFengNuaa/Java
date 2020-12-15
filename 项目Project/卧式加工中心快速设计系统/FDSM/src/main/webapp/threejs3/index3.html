@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">	
+
+<title>展示</title>
+<link rel="shortcut icon" href="textures/favicon.png">
+
+<style>
+	canvas { width: 100%; height: 100% }
+
+	body{ 
+		border: none; 
+		overflow: hidden; 
+		margin: 0px; 
+		background: url(textures/bg.jpg);
+		background-size: 100% 100%;
+	}
+</style>
+
+</head>
+
+<body>
+		<!--拉条-->
+   		<div style="position: absolute; margin-left: 0px;">x:<input type="range"  id='scaling2'  value="1" min="0" max="10" step="0.5" oninput="change1()" onchange="change1()"onmouseover="call2()" onmouseout="call3()"></div>
+   		<div style="position: absolute; margin-left: 150px;">y:<input type="range"  id='scaling3' value="1" min="0" max="10" step="0.5" oninput="change1()" onchange="change1()"onmouseover="call2()" onmouseout="call3()"></div>
+   		<div style="position: absolute; margin-left: 300px;">z:<input type="range"  id='scaling4' value="1" min="0" max="10" step="0.5" oninput="change1()" onchange="change1()"onmouseover="call2()" onmouseout="call3()"></div>
+		<!--图片信息-->
+		<div id="imgs" style="width: 500px;height: 405px;right: 0px;display: none; position: absolute;background-image: url(textures/1.png);background-size: 100% 100%;">
+			<span style=" float: right;padding-right: 30px;padding-top: 5px;font-size: 20px;cursor: pointer;" onclick="call()">X</span>
+		</div>
+
+<script src="js/three1.js"></script>
+<script src="js/three2.js"></script>
+<script src="js/three3.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script>
+	
+	// X 关闭信息 及 拉条
+	function call(){
+		document.getElementById("imgs").style.display = "none";
+	}
+	
+	//拉条函数
+	var xxx1,xxx2,xxx3,xxx4,xxx5;
+	function change1(){
+		xxx1 = document.getElementById('scaling2').value ;	
+		xxx2 = document.getElementById('scaling3').value ;	
+		xxx3 = document.getElementById('scaling4').value ;
+		for (var i = 0; i < grounds.length; i++) {
+			if( grounds[i].name == "a002_0"){	
+				grounds[i].scale.set(xxx1,xxx2,xxx3)
+			}
+		}
+	}	
+
+	//拉条移入
+	function call2(){
+			controls.enabled  = false;
+			document.getElementById('scaling2').focus();
+			document.getElementById('scaling3').focus();
+			document.getElementById('scaling4').focus();			
+	}
+	
+	//拉条移出
+	function call3(){
+		controls.enabled  = true;
+		document.getElementById('scaling2').blur();
+		document.getElementById('scaling3').blur();
+		document.getElementById('scaling4').blur();
+	}
+	
+//创建canvas容器
+var	container = document.createElement( 'div' );
+	document.body.appendChild( container );
+	
+//创建广角相机
+var	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100000 );
+	camera.position.set(30,20,-30);
+	
+//创建场景
+var	scene = new THREE.Scene();
+
+//创建环境光源
+var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+   	hemiLight.position.set( 0, 500, 0 );
+   	scene.add( hemiLight ); 
+
+//创建点光源
+var pointLight = new THREE.PointLight(0xFFFFFF, 0.5);
+    scene.add(pointLight);
+
+//渲染器
+var	renderer = new THREE.WebGLRenderer( { antialias: true,alpha:true } );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setPixelRatio( window.devicePixelRatio );      
+	container.appendChild( renderer.domElement );
+
+//控制器
+var controls;
+    controls = new THREE.OrbitControls( camera );
+    controls.autoRotateSpeed = 4;   
+
+//加载模型
+var grounds = [];
+var GLTFLoader = new THREE.GLTFLoader();
+    THREE.DRACOLoader.setDecoderPath( 'js/gltf/' );
+	GLTFLoader.setDRACOLoader( new THREE.DRACOLoader() );
+
+	GLTFLoader.load( "models/jixie.gltf", function ( gltf ) {
+		gltf.scene.traverse( function ( child ) {		
+			if ( child.isMesh ) {
+				child.material = child.material.clone();
+				child.material.side = THREE.DoubleSide;
+				grounds.push(child);
+				if( child.name != "a002_0" ){
+					child.visible = false;
+				}
+			}
+		}); 
+        gltf.scene.position.set(0,-1,0);         
+        gltf.scene.scale.set(5,5,5); 	         
+		scene.add( gltf.scene );	
+	});		
+ 
+ 
+//窗口自适应
+window.addEventListener( 'resize', onWindowResize, false );
+function onWindowResize( event ) {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+
+
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+//点击事件
+function onDocumentMouseUp(event) {	
+	event.preventDefault();
+	mouse.x = ( event.clientX / renderer.domElement.width ) * 2 - 1;
+	mouse.y = - ( event.clientY / renderer.domElement.height ) * 2 + 1;
+	raycaster.setFromCamera( mouse, camera );
+    var intersects1 = raycaster.intersectObjects( grounds );  	 
+	if ( intersects1.length > 0 ) {
+		for (var i = 0; i < grounds.length; i++) {
+			if( grounds[i] == intersects1[0].object ){
+				if( grounds[i].name == "a002_0"){
+					document.getElementById("imgs").style.display = "block";
+				}
+			}
+		}
+	}
+}
+
+
+
+
+//循环渲染
+render(); 
+function render() {
+	requestAnimationFrame( render ); 
+	controls.update();
+
+    pointLight.position.copy ( camera.position );       
+    pointLight.scale.copy ( camera.scale ); 
+
+    renderer.clear();
+    renderer.render( scene, camera );
+}
+
+</script>
+
+	
+</body>
+</html>

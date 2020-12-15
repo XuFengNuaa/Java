@@ -1,0 +1,7 @@
+前端：
+	模板：改成自己的   xadmin--后台模板（推荐使用）
+	框架：手动拼接，layUI，elementUi，bootstrap
+		栅格
+		导航台
+		侧边栏
+		表单  

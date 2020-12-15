@@ -1,0 +1,6 @@
+﻿Mapper修改注意事项：
+1. 修改合适的方法
+2. 添加Service和实现类的方法
+3.修改Mapper文件的头目namespace="com.nuaa.dao.WorkpieceDao"
+4.最后测试partServicre，看能不能得到连接！！
+com.nuaa.service.impl.PartsMgServiceImpl@481ba2cf

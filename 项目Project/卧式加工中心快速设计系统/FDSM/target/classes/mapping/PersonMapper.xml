@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.PersonMapper">
+
+  <insert id="insert" parameterType="Person">
+    insert into domin (name, pwd, age, gender)
+    values (#{name}, #{pwd}, #{age}, #{gender})
+  </insert>
+  
+ 	 <!-- resulttype:返回的数据类型 -->
+  <select id="findAll" resultType="Person">
+		select * FROM domin 
+  </select>
+   	<!-- 条件查询 -->
+  <select id="findSelective"  resultType="Person">
+		SELECT * FROM domin 
+	<where>
+		<if test="name!=null and name!=''">
+			and name = #{name}
+		</if>
+		<if test="did!=0">
+			and did = #{did}
+		</if>
+		<if test="pwd!=null and pwd!=''">
+			and pwd = #{pwd}
+		</if>
+	</where>
+  </select>
+  	<!-- 模糊条件查询 -->
+  <select id="findMHSelective"  resultType="Person">
+		SELECT * FROM domin 
+	<where>
+		<if test="name!=null and name!=''">
+			and name like concat('%',#{name},'%')	 
+		</if>
+		<if test="did!=0">
+			and did = #{did}
+		</if>
+		<if test="pwd!=null and pwd!=''">
+			and pwd like concat('%',#{pwd},'%')
+		</if>
+	</where>
+  </select>
+	<!-- 查询总记录数 -->
+  <select id="countAll" resultType="int">
+		select count(*) from domin
+  </select>
+  	<!-- 更新用户数据 -->
+  <update id="updateUser" parameterType="Person">
+       update domin set name=#{name},pwd=#{pwd},age=#{age},gender=#{gender}
+		where did=#{did}
+  </update>
+  	<!-- id删除数据 -->
+  <delete id="deleteById" parameterType="int">
+		DELETE FROM domin WHERE did = #{did}
+  </delete>
+</mapper>

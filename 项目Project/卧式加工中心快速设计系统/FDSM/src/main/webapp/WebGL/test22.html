@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>STL Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="libs/three1.js"></script>
+    <script type="text/javascript" src="libs/three2.js"></script>
+    <script type="text/javascript" src="libs/three3.js"></script>
+    <script type="text/javascript" src="libs/STLLoader.js"></script>
+    <script type="text/javascript" src="libs/OrbitControls.js"></script>
+    <script type="text/javascript" src="libs/stats.js"></script>
+    <script type="text/javascript" src="libs/dat.gui.js"></script>
+    <script type="text/javascript" src="libs/jquery-3.4.1.min.js"></script>
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        #label {
+            position: absolute;
+            padding: 30px;
+            width: 220px;
+            background: rgba(255, 255, 255, 0.6);
+            line-height: 1;
+            border-radius: 5px;
+            font-size: 22px
+        }
+    </style>
+</head>
+<body>
+   		
+<div id="Stats-output">
+</div>
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+<div id="label"></div>
+<script type="text/javascript">
+
+    function init() {
+        var stats = initStats();
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100000);
+        
+        var axes = new THREE.AxisHelper(20);//新建坐标辅助对象
+        scene.add(axes);//将坐标辅助对象添加到场景中
+        // create a render and set the size  渲染器
+        
+        var webGLRenderer = new THREE.WebGLRenderer({ antialias: true,alpha:true });
+        webGLRenderer.setClearColor(new THREE.Color(0xB0B0B0)); // 背景色
+        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        webGLRenderer.shadowMapEnabled = true;  // 投影效果
+
+        camera.position.x = -60;
+        camera.position.y = 400;
+        camera.position.z = 120;  
+
+        camera.up.set(0, 1, 0);   // 默认是这个
+  //     camera.lookAt(scene.position);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));  //设置摄像机焦点
+
+        // add spotlight for the shadows
+        var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.4);
+   		hemiLight.position.set( 0, 500, 0 );
+   		scene.add( hemiLight ); 
+
+        var spotLight = new THREE.PointLight(0xFFFFFF, 0.5);
+        spotLight.position.set(-120, 100, 100);
+        scene.add(spotLight);
+		
+     // 控制器
+        var controls;
+        controls = new THREE.OrbitControls( camera ,webGLRenderer.domElement);
+        controls.autoRotateSpeed = 4;   
+        
+        document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
+
+        var step = 0;
+        
+        // setup the control gui
+        var group;
+        var gui = new dat.GUI();
+        
+        var obj1 = [];
+        var loader = new THREE.STLLoader();
+        var group = new THREE.Object3D();
+        loader.load("assets/models/bed.STL", function (geometry) {	
+            var mat = new THREE.MeshLambertMaterial({color: 0x236b8e,
+            	transparent : true,
+            	opacity : 0.9});
+            group = new THREE.Mesh(geometry, mat);
+            group.position.set(0,0,(190+1060)*0.05);    //   190 * 0.05
+            group.name = "bed";
+            // mesh信息
+            
+            group.rotateX(-0.5 * Math.PI);        // 绕x轴旋转
+            group.scale.set(0.05, 0.05, 0.05); 
+            console.log(group);  
+   /*         var C = new THREE.Matrix4();
+            var D = new THREE.Matrix4();
+            C = camera.matrixWorldInverse;
+            console.log(C);*/
+       //     console.log(D.multiplyMatrices (group.matrixWorld,camera.matrixWorldInverse));
+
+            console.log(group.modelViewMatrix);
+            console.log(camera.matrixWorldInverse);
+            console.log(group.matrixWorld);
+      /*      C.multiply(group.matrixWorld);
+            console.log(C);   */
+            obj1.push(group);        
+            scene.add(group);
+        });
+//-------------------- Screw you------------------------------------------------------
+        var loader2 = new THREE.STLLoader();
+        var group2 = new THREE.Object3D();
+        loader2.load("assets/models/screw2.STL", function (geometry2) {	
+            //    console.log(geometry);
+                var mat2 = new THREE.MeshLambertMaterial({color: 0xcfb53b});
+                group2 = new THREE.Mesh(geometry2, mat2);
+      //          group2.position.set(0,0,20);    //   190 * 0.05
+                // mesh信息
+                
+                group2.name = "screw_R";
+         //       console.log(group2);  
+                            
+                group2.translateY((630+70)*0.05);
+                group2.translateX(-(25)*0.05);
+                group2.translateZ(575*0.05);
+                group2.rotateY(-0.5 * Math.PI);     // 绕y轴旋转*/
+                group2.scale.set(0.05, 0.05, 0.05);   
+                obj1.push(group2);
+                scene.add(group2);
+            });
+      //-------------------- Screw zuo------------------------------------------------------
+        var loader3 = new THREE.STLLoader();
+        var group3 = new THREE.Object3D();
+        loader3.load("assets/models/screw2.STL", function (geometry3) {	
+                var mat3 = new THREE.MeshLambertMaterial({color: 0xcfb53b});
+                group3 = new THREE.Mesh(geometry3, mat3);
+                group3.name = "screw_L";
+        //        console.log(group3);  
+                                  
+                group3.translateY((630+70)*0.05);
+                group3.translateX(-(25)*0.05);
+                group3.translateZ(-(575)*0.05);
+                group3.rotateY(-0.5 * Math.PI);     // 绕y轴旋转
+                group3.scale.set(0.05, 0.05, 0.05);       
+                scene.add(group3);
+                obj1.push(group3);
+            });
+   //-----------------Z--slidway you ----------------------
+        var loader4 = new THREE.STLLoader();
+        var group4 = new THREE.Object3D();
+        loader4.load("assets/models/way.STL", function (geometry4) {	
+                var mat4 = new THREE.MeshLambertMaterial({color: 0xADFF2F});
+                group4 = new THREE.Mesh(geometry4, mat4);
+                group4.name = "way_R";
+     //           console.log(group4);  
+                                  
+                group4.translateY((630+50)*0.05);
+                group4.translateX((100)*0.05);
+                group4.translateZ(452.5*0.05);
+                group4.rotateX(0.5 * Math.PI);     // 绕x轴旋转*/
+                
+                group4.scale.set(0.06, 0.05, 0.05);       
+                scene.add(group4);
+                obj1.push(group4);
+            });
+      //-----------------Z--slidway zuo ----------------------
+        var loader5 = new THREE.STLLoader();
+        var group5 = new THREE.Object3D();
+        loader5.load("assets/models/way.STL", function (geometry5) {	
+                var mat5 = new THREE.MeshLambertMaterial({color: 0xADFF2F});
+                group5 = new THREE.Mesh(geometry5, mat5);
+                group5.name = "way_L";
+      //          console.log(group5);  
+                                  
+                group5.translateY((630+50)*0.05);
+                group5.translateX((100)*0.05);
+                group5.translateZ(-(397.5)*0.05);
+                group5.rotateX(0.5 * Math.PI);     // 绕y轴旋转*/
+                group5.scale.set(0.06, 0.05, 0.05);       
+                scene.add(group5);
+                obj1.push(group5);
+            });
+      //-----------------workbench----------------------
+        var loader6 = new THREE.STLLoader();
+        var group6 = new THREE.Object3D();
+        loader6.load("assets/models/wp111.STL", function (geometry6) {	
+                var mat6 = new THREE.MeshLambertMaterial({color: 0xE9967A});
+                group6 = new THREE.Mesh(geometry6, mat6);
+                    
+            /*  group6.translateY((630+50)*0.05);
+                group6.translateX((100)*0.05);
+                group6.translateZ(-(397.5)*0.05);
+                     // 绕y轴旋转*/
+               group6.rotateZ(-0.5 * Math.PI);
+               group6.rotateY(-0.5 * Math.PI);
+               group6.translateZ((630+50)*0.05);
+               group6.translateY((900)*0.05);
+                
+                group6.scale.set(0.05, 0.05, 0.05); 
+                group6.name = "gongzuotai";
+      //          console.log(group6); 
+                scene.add(group6);
+                obj1.push(group6);
+            });
+        var loader7 = new THREE.STLLoader();
+        var group7 = new THREE.Object3D();
+        loader7.load("assets/models/way.STL", function (geometry7) {	
+                var mat7 = new THREE.MeshLambertMaterial({color: 0xADFF2F});
+                group7 = new THREE.Mesh(geometry7, mat7);
+                group7.name = "way_Xia";
+        //        console.log(group7);  
+                                  
+                group7.translateY((1110+50)*0.05);
+                group7.translateX((2420+125-55/2)*0.05);
+                group7.translateZ(-1060*0.05);
+                group7.rotateX(0.5 * Math.PI);     // 绕x轴旋转*/
+                group7.rotateZ(0.5 * Math.PI); 
+                group7.scale.set(0.06, 0.05, 0.05);       
+                scene.add(group7);
+                obj1.push(group7);
+            });
+        var loader8 = new THREE.STLLoader();
+        var group8 = new THREE.Object3D();
+        loader8.load("assets/models/way.STL", function (geometry8) {	
+                var mat8 = new THREE.MeshLambertMaterial({color: 0xADFF2F});
+                group8 = new THREE.Mesh(geometry8, mat8);
+                group8.name = "way_Shang";
+       //         console.log(group8);  
+                                  
+                group8.translateY((1110+50)*0.05);
+                group8.translateX((2420+125-55/2+750)*0.05);
+                group8.translateZ(-1060*0.05);
+                group8.rotateX(0.5 * Math.PI);     // 绕x轴旋转*/
+                group8.rotateZ(0.5 * Math.PI); 
+                group8.scale.set(0.06, 0.05, 0.05);       
+                scene.add(group8);
+                obj1.push(group8);
+            });
+      //---------X - Screw  ---------------------------------  
+        var loader9 = new THREE.STLLoader();
+        var group9 = new THREE.Object3D();
+        loader9.load("assets/models/screw2.STL", function (geometry9) {	
+                var mat9 = new THREE.MeshLambertMaterial({color: 0xcfb53b});
+                group9 = new THREE.Mesh(geometry9, mat9);
+                group9.name = "Screw_Mid";
+      //          console.log(group9);  
+                                  
+                group9.translateY((630+70+480)*0.05);
+                group9.translateX((2420+500)*0.05);
+                group9.translateZ((905)*0.05);
+             //   group9.rotateY(-0.5 * Math.PI);     // 绕y轴旋转
+                group9.scale.set(0.05, 0.05, 0.055);       
+                scene.add(group9);
+                obj1.push(group9);
+            });
+        var loader10 = new THREE.STLLoader();
+        var group10 = new THREE.Object3D();
+        loader10.load("assets/models/up.STL", function (geometry10) {	
+                var mat10 = new THREE.MeshLambertMaterial({color: 0x2F4F4F});
+                group10 = new THREE.Mesh(geometry10, mat10);
+                group10.name = "upright";
+        //        console.log(group10);  
+                                 
+                group10.translateY((1110+1700+50)*0.05);
+                group10.translateX((2420)*0.05);
+                group10.translateZ(-(450)*0.05);
+                group10.rotateZ(-0.5 * Math.PI);     // 绕Z轴旋转
+                group10.scale.set(0.05, 0.05, 0.05);       
+                scene.add(group10);
+                obj1.push(group10); 
+            });
+        
+        var loader11 = new THREE.STLLoader();
+        var group11 = new THREE.Object3D();
+        loader11.load("assets/models/screw2.STL", function (geometry11) {	
+                var mat11 = new THREE.MeshLambertMaterial({color: 0xcfb53b});
+                group11 = new THREE.Mesh(geometry11, mat11);
+                group11.name = "screw_Y";
+   //             console.log(group11);  
+                                  
+                group11.translateY((125+1110+50+1700)*0.05);
+                group11.translateX((2420-70)*0.05);
+                group11.translateZ((120)*0.05);
+                group11.rotateX(-0.5 * Math.PI);     // 绕y轴旋转
+                group11.rotateZ(0.5 * Math.PI);     // 绕y轴旋转
+                group11.scale.set(0.05, 0.05, 0.05*0.94);       
+                scene.add(group11);
+                obj1.push(group11); 
+            });
+      //  ------y -way -----------------------------------
+        var loader12 = new THREE.STLLoader();
+        var group12 = new THREE.Object3D();
+        loader12.load("assets/models/way.STL", function (geometry12) {	
+                var mat12 = new THREE.MeshLambertMaterial({color: 0xADFF2F});
+                group12 = new THREE.Mesh(geometry12, mat12);
+                group12.name = "way_Up_R";
+    //            console.log(group12);  
+                                  
+                group12.translateY((1110+250)*0.05);
+                group12.translateX((2420-50)*0.05);
+                group12.translateZ((350+55/2)*0.05);   //  y导轨间距 700
+                group12.rotateX(0.5 * Math.PI);     // 绕y轴旋转*/
+                group12.rotateY(0.5 * Math.PI);     // 绕y轴旋转*/
+                group12.scale.set(0.05*0.83, 0.05, 0.05);       
+                scene.add(group12);
+                obj1.push(group12); 
+            });
+    //  ------y -way -----------------------------------
+        var loader13 = new THREE.STLLoader();
+        var group13 = new THREE.Object3D();
+        loader13.load("assets/models/way.STL", function (geometry13) {	
+                var mat13 = new THREE.MeshLambertMaterial({color: 0xADFF2F});
+                group13 = new THREE.Mesh(geometry13, mat13);
+                group13.name = "way_Up_L";
+      //          console.log(group13);  
+                                  
+                group13.translateY((1110+250)*0.05);
+                group13.translateX((2420-50)*0.05);
+                group13.translateZ((-350+55/2)*0.05);   //  y导轨间距 700
+                group13.rotateX(0.5 * Math.PI);     // 绕y轴旋转*/
+                group13.rotateY(0.5 * Math.PI);     // 绕y轴旋转*/
+                group13.scale.set(0.05*0.83, 0.05, 0.05);       
+                scene.add(group13);
+                obj1.push(group13); 
+            });
+        
+    //  ------sindle -----------------------------------
+        var loader14 = new THREE.STLLoader();
+        var group14 = new THREE.Object3D();
+        loader14.load("assets/models/sindle.STL", function (geometry14) {	
+                var mat14 = new THREE.MeshLambertMaterial({color: 0x8FBC8F});
+                group14 = new THREE.Mesh(geometry14, mat14);
+                group14.name = "sindle";
+   //             console.log(group14);  
+                                  
+                group14.translateY((1110+50+250+750)*0.05);
+                group14.translateX((2420-70-50)*0.05);   //  y导轨间距 700
+                group14.rotateY(-0.5 * Math.PI);     // 绕y轴旋转*/
+                group14.scale.set(0.05, 0.05, 0.05);       
+                scene.add(group14);
+                obj1.push(group14); 
+            });
+ //       console.log(camera.projectionMatrix);  // 视图变换矩阵
+   //     console.log(camera.matrixWorldInverse);  // 视图变换矩阵
+ //       console.log(camera);
+            console.log(camera.matrixWorldInverse);
+        render();
+           
+       
+        function render() {
+            stats.update();
+  /*         if (group6) {
+            	if(group6.position.x < 1800*0.05  ){
+            		group6.position.x += 50*0.05;
+            	}
+				if(group6.position.x > 600*0.05){
+					group6.position.x -= 50*0.05;
+				}
+               	 
+              //   group.rotation.x+=0.006;
+            }*/
+
+            // render using requestAnimationFrame
+            if (selectObject != undefined && selectObject != null) {
+            	    renderDiv(selectObject);
+            }
+            requestAnimationFrame(render);
+            controls.update();
+            webGLRenderer.render(scene, camera);
+        }
+
+        
+        function initStats() {
+
+            var stats = new Stats();
+            stats.setMode(0); // 0: fps, 1: ms
+            // Align top-left
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            document.getElementById("Stats-output").appendChild(stats.domElement);
+            return stats;
+        }
+        
+        var selectObject;
+        var nextObject;
+        var colorHex;
+        // 点击事件
+        document.addEventListener('dblclick', onMouseDblclick, false);
+        
+        function onMouseDblclick(event){
+        	var intersects = getIntersects(event);  // 获取射线检测的对象
+        	if(intersects.length != 0 && intersects[0].object instanceof THREE.Mesh	){
+        		selectObject = intersects[0].object;
+        		if(nextObject != null && nextObject != selectObject){
+        			nextObject.material.color.set(colorHex);
+        			console.log(colorHex);
+        			nextObject.material.opacity = 0.9;
+        		}
+        			nextObject = selectObject;
+        		
+        		if(intersects[0].object.material.color.getHex() != 7864320){
+        			selectObject.currentHex = selectObject.material.color.getHex();
+        			colorHex = selectObject.material.color.getHex();
+            		changeMaterial(selectObject);
+        		}	
+        		$("#label").show();
+        //		console.log(selectObject.material.color.getHex()); // 红色
+        	}else {
+        		$("#label").hide();
+        		alert("未选中mesh！");
+        		if(selectObject){
+        			selectObject.material.color.set(selectObject.currentHex);
+        			selectObject.material.opacity = 0.9;
+        		}
+        	}	
+        }
+        
+        function getIntersects(event){
+        	event.preventDefault();
+    //    	console.log("event.clientX:"+event.clientX);
+    //    	console.log("event.clientY:"+event.clientY);
+        	
+        	// 声明 raycaster 和 mouse变量
+        	var raycaster = new THREE.Raycaster();
+        	var mouse = new THREE.Vector2();
+        	// 鼠标点击位置，选中具体的对象
+        	mouse.x = (event.clientX / webGLRenderer.domElement.width) *2 -1;
+        	mouse.y = -(event.clientY / webGLRenderer.domElement.height)*2 +1;
+        	raycaster.setFromCamera(mouse,camera);
+        	var intersects = raycaster.intersectObjects(obj1);
+        	return intersects ;
+        }
+        // 改变材质
+        function changeMaterial(object){
+        	var material = new THREE.MeshLambertMaterial({
+        		color : 0x780000 ,
+        		transparent :  true,
+        		opacity : 0.6		
+        	});
+        	object.material = material;
+        }
+        
+        // 更新div的位置
+        function renderDiv(object) {
+            // 获取窗口的一半高度和宽度
+            var halfWidth = window.innerWidth / 2;
+            var halfHeight = window.innerHeight / 2;
+
+            // 逆转相机求出二维坐标
+            var vector = object.position.clone().project(camera);
+
+            // 修改 div 的位置
+            $("#label").css({
+                left: vector.x * halfWidth + halfWidth,
+                top: -vector.y * halfHeight + halfHeight - object.position.y
+            });
+            // 显示模型信息
+       //     console.log(object.name);
+            
+          //  $("#label").show();
+  /*          $.ajax({url:"queryWb.do",success:function(result){
+    			console.log(result);
+    		}});*/
+            $("#label").html("name : "+object.name);
+        //    $("#label").append("<br></br>");
+            $("#label").append("<p>material : HT250</p>");
+            
+        }
+        
+        document.addEventListener('resize', onWindowResize, false);
+     // 窗口变动触发的方法
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    }  
+    window.onload = init;
+    
+</script>
+
+</body>
+</html>

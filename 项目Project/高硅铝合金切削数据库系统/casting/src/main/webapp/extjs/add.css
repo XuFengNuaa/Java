@@ -1,0 +1,34 @@
+<style type="text/css">
+       
+        .save {
+            background-image:url(../images/custom/save.gif) !important;
+        }
+         .option {
+            background-image:url(../images/custom/plugin.gif) !important;
+        }
+         .information {
+            background-image:url(../images/custom/information.gif) !important;
+        }
+        .remove {
+            background-image:url(../images/custom/delete.gif) !important;
+        }
+        .addFile {
+            background-image:url(../images/custom/addFile.gif) !important;
+        }
+        .wlk_temp {
+            background-image:url(../images/custom/wlk_temp.gif) !important;
+        }
+		.delete {
+		    background-image:url(../images/custom/delete.gif) !important;
+		}
+        .update {
+            background-image:url(../images/custom/update.gif) !important;
+        }
+		.files {
+		    background-image:url(../images/custom/files.gif) !important;
+		}
+		 .add {
+            background-image:url(../images/custom/add.gif) !important;
+        }
+
+</style>

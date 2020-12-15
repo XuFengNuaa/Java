@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.WholeDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Whole">
+    <id column="mt_id" jdbcType="INTEGER" property="mtId" />
+    <result column="mt_type" jdbcType="VARCHAR" property="mtType" />
+    <result column="mt_wp" jdbcType="VARCHAR" property="mtWp" />
+    <result column="mt_spindle" jdbcType="VARCHAR" property="mtSpindle" />
+    <result column="mt_atc" jdbcType="VARCHAR" property="mtAtc" />
+    <result column="mt_screw" jdbcType="VARCHAR" property="mtScrew" />
+    <result column="mt_slideway" jdbcType="VARCHAR" property="mtSlideway" />
+    <result column="mt_upright" jdbcType="VARCHAR" property="mtUpright" />
+    <result column="mt_workbed" jdbcType="VARCHAR" property="mtWorkbed" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mt_id, mt_type, mt_wp, mt_spindle, mt_atc, mt_screw, mt_slideway, mt_upright, mt_workbed
+  </sql>
+  <!-- 条件查询 -->
+  <select id="findWhSelective"  resultType="Whole">
+		SELECT * FROM mt_whole 
+	<where>
+		<if test="mtId!='' and mtId!=null">
+			and mt_id = #{mtId}
+		</if>
+		<if test="mtType!=null and mtType!=''">
+			and mt_type = #{mtType}
+		</if>
+	</where>
+  </select>
+  	<!-- 模糊条件查询 -->
+  <select id="findWhMHSelective"  resultType="Whole">
+		SELECT * FROM mt_whole 
+	<where>
+		<if test="mtId!='' and mtId!=null">
+			and mt_id like concat('%',#{mtId},'%')
+		</if>
+		<if test="mtType!=null and mtType!=''">
+			and mt_type like concat('%',#{mtType},'%')
+		</if>
+	</where>
+  </select>
+  
+  <delete id="deleteWhById" parameterType="java.lang.Integer">
+    delete from mt_whole
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertWh" parameterType="com.nuaa.bean.Whole">
+    insert into mt_whole (mt_id, mt_type, mt_wp, 
+      mt_spindle, mt_atc, mt_screw, 
+      mt_slideway, mt_upright, mt_workbed
+      )
+    values (#{mtId,jdbcType=INTEGER}, #{mtType,jdbcType=VARCHAR}, #{mtWp,jdbcType=VARCHAR}, 
+      #{mtSpindle,jdbcType=VARCHAR}, #{mtAtc,jdbcType=VARCHAR}, #{mtScrew,jdbcType=VARCHAR}, 
+      #{mtSlideway,jdbcType=VARCHAR}, #{mtUpright,jdbcType=VARCHAR}, #{mtWorkbed,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateWhByIdSelective" parameterType="com.nuaa.bean.Whole">
+    update mt_whole
+    <set>
+      <if test="mtType != null">
+        mt_type = #{mtType,jdbcType=VARCHAR},
+      </if>
+      <if test="mtWp != null">
+        mt_wp = #{mtWp,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSpindle != null">
+        mt_spindle = #{mtSpindle,jdbcType=VARCHAR},
+      </if>
+      <if test="mtAtc != null">
+        mt_atc = #{mtAtc,jdbcType=VARCHAR},
+      </if>
+      <if test="mtScrew != null">
+        mt_screw = #{mtScrew,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSlideway != null">
+        mt_slideway = #{mtSlideway,jdbcType=VARCHAR},
+      </if>
+      <if test="mtUpright != null">
+        mt_upright = #{mtUpright,jdbcType=VARCHAR},
+      </if>
+      <if test="mtWorkbed != null">
+        mt_workbed = #{mtWorkbed,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </update>
+  <update id="updateWhById" parameterType="com.nuaa.bean.Whole">
+    update mt_whole
+    set mt_type = #{mtType,jdbcType=VARCHAR},
+      mt_wp = #{mtWp,jdbcType=VARCHAR},
+      mt_spindle = #{mtSpindle,jdbcType=VARCHAR},
+      mt_atc = #{mtAtc,jdbcType=VARCHAR},
+      mt_screw = #{mtScrew,jdbcType=VARCHAR},
+      mt_slideway = #{mtSlideway,jdbcType=VARCHAR},
+      mt_upright = #{mtUpright,jdbcType=VARCHAR},
+      mt_workbed = #{mtWorkbed,jdbcType=VARCHAR}
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </update>
+</mapper>

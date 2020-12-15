@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.UserInfoDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.UserInfo">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="userNumber" jdbcType="VARCHAR" property="usernumber" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="decription" jdbcType="VARCHAR" property="decription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, userNumber, username, pwd, role, age, job, tel, decription
+  </sql>
+  
+   	<!-- 条件查询 -->
+  <select id="findUserSelective"  resultType="UserInfo">
+		SELECT * FROM user_info 
+	<where>
+		<if test="username!=null and username!=''">
+			and username = #{username}
+		</if>
+		<if test="usernumber!=null and usernumber!=''">
+			and userNumber = #{usernumber}
+		</if>
+		<if test="uid!='' and uid!=null">
+			and uid = #{uid}
+		</if>
+		<if test="role!=null and role!=''">
+			and role = #{role}
+		</if>
+		<if test="job!=null and job!=''">
+			and job = #{job}
+		</if>
+	</where>
+	
+  </select>
+  	<!-- 模糊条件查询 -->
+  <select id="findUserMHSelective"  resultType="UserInfo">
+		SELECT * FROM user_info 
+	<where>
+		<if test="username!=null and username!=''">
+			and username like concat('%',#{username},'%')	 
+		</if>
+		<if test="uid!='' and uid!=null">
+			and uid = #{uid}
+		</if>
+		<if test="role!=null and role!=''">
+			and role like concat('%',#{role},'%')
+		</if>
+		<if test="job!=null and job!=''">
+			and job like concat('%',#{job},'%')
+		</if>
+	</where>
+</select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from user_info
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertUser" parameterType="com.nuaa.bean.UserInfo">
+    insert into user_info (uid, userNumber, username, 
+      pwd, role, age, job, 
+      tel, decription)
+    values (#{uid,jdbcType=INTEGER}, #{usernumber,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{job,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{decription,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateUserByIdSelective" parameterType="com.nuaa.bean.UserInfo">
+    update user_info
+    <set>
+      <if test="usernumber != null">
+        userNumber = #{usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="decription != null">
+        decription = #{decription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateUserById" parameterType="com.nuaa.bean.UserInfo">
+    update user_info
+    set userNumber = #{usernumber,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      job = #{job,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      decription = #{decription,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

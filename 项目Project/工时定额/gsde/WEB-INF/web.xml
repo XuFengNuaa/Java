@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>
+			com.nuaa.sys.filter.LoginFilter
+		</filter-class>
+		<init-param>
+			<param-name>LoginPage</param-name>
+			<param-value>/login/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>HomePage</param-name>
+			<param-value>/gsde/index.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>FailPage</param-name>
+			<param-value>/file/failPage.jsp</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.doc</url-pattern>
+	</filter-mapping>
+	<servlet>
+      <servlet-name>servletname</servlet-name>
+      <servlet-class>com.nuaa.app.impl.TimeImpl</servlet-class>
+      <load-on-startup>1</load-on-startup>
+ 	</servlet>
+</web-app>

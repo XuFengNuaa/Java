@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>caulate</title>
+    <script type="text/javascript" src="util/three.js"></script>
+    <style>
+        body{margin: 0;overflow: hidden;}
+    </style>
+</head>
+<body>
+<div id="WebGL-output">
+</div>
+<script type="text/javascript">
+    //当网页加载完成后运行的JavaScript方法
+    function init() {
+    	var eye = new THREE.Vector3(0, 0, 100);
+    	var up = new THREE.Vector3(0, 1, 0);
+    	var at = new THREE.Vector3(1, 2, 3);
+
+    	var N = new THREE.Vector3();
+    	N.subVectors(eye, at); 
+    	N.normalize();
+    	var U = new THREE.Vector3();
+    	U.crossVectors(up, N);
+    	U.normalize();
+    	var V = new THREE.Vector3();
+    	V.crossVectors(N, U);
+    	V.normalize();
+
+    	var R = new THREE.Matrix4();
+    	R.set(U.x, U.y, U.z, 0,
+    	    V.x, V.y, V.z, 0,
+    	    N.x, N.y, N.z, 0,
+    	    0, 0, 0, 1);  
+
+    	var T = new THREE.Matrix4(); 
+    	T.set(1, 0, 0, -eye.x,
+    	    0, 1, 0, -eye.y,
+    	    0, 0, 1, -eye.z,
+    	    0, 0, 0, 1);  
+
+    	var V = new THREE.Matrix4();
+    	V.multiplyMatrices(R, T);   
+    	console.log(V); 
+    }
+	
+    window.onload = init;//当网页加载后执行init方法
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+ "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="Login" class="com.nuaa.app.impl.LoginImpl"/>
+  <bean id="Printedplate_Mod" class="com.nuaa.app.impl.Printedplate_ModImpl"/>
+  <bean id="Milling_Mod" class="com.nuaa.app.impl.Milling_ModImpl"/>
+  <bean id="PPcutMod" class="com.nuaa.app.impl.PPcutModImpl"/>
+  <bean id="QueryPlate" class="com.nuaa.app.impl.QueryPlateImpl"/>
+  <bean id="QueryMill" class="com.nuaa.app.impl.QueryMillImpl"/>
+  <bean id="MillSim_Mod" class="com.nuaa.app.impl.MillSim_ModImpl"/>
+  <bean id="MachineMod" class="com.nuaa.app.impl.MachineModImpl"/>
+  <bean id="CutterMod" class="com.nuaa.app.impl.CutterModImpl"/>
+  <bean id="MaterialMod" class="com.nuaa.app.impl.MaterialModImpl"/>
+  <bean id="PartTypeMod" class="com.nuaa.app.impl.PartTypeModImpl"/>
+  <bean id="PartProcessMod" class="com.nuaa.app.impl.PartProcessModImpl"/>
+  <bean id="WeightMod" class="com.nuaa.app.impl.WeightModImpl"/>
+  <bean id="CutterParaMod" class="com.nuaa.app.impl.CutterParaModImpl"/>
+  <bean id="zhimubanMod" class="com.nuaa.app.impl.zhimubanModImpl"/>
+  <bean id="baofengMod" class="com.nuaa.app.impl.baofengModImpl"/>
+  <bean id="cengyaMod" class="com.nuaa.app.impl.cengyaModImpl"/>  
+  <bean id="beiliaoMod" class="com.nuaa.app.impl.beiliaoModImpl"/>    
+  <bean id="zhidingweikongMod" class="com.nuaa.app.impl.zhidingweikongModImpl"/>    
+  <bean id="shukongzuankongMod" class="com.nuaa.app.impl.shukongzuankongModImpl"/>     
+  <bean id="tuxingzhuanyiMod" class="com.nuaa.app.impl.tuxingzhuanyiModImpl"/>  
+  <bean id="shikeMod" class="com.nuaa.app.impl.shikeModImpl"/>    
+  <bean id="tufuMod" class="com.nuaa.app.impl.tufuModImpl"/>      
+  <bean id="rfpzMod" class="com.nuaa.app.impl.rfpzModImpl"/>
+  <bean id="kongjinshuhuaMod" class="com.nuaa.app.impl.kongjinshuhuaModImpl"/>
+  <bean id="UsrInfMod" class="com.nuaa.app.impl.UsrInfModImpl"/>
+  <bean id="UsrMod" class="com.nuaa.app.impl.UsrModImpl"/>
+  <bean id="Circuit_board" class="com.nuaa.app.impl.Circuit_boardImpl"/>     
+  <bean id="CircuitBoard" class="com.nuaa.app.impl.CircuitBoardImpl"/>    
+  <bean id="Cleaning" class="com.nuaa.app.impl.CleaningImpl"/>
+  
+   
+  <!--设定为自动代理-->
+  <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+  <!--负责记录有异常发生时的信息-->
+  <bean id="exceptionHandler" class="com.nuaa.sys.handler.ExceptionHandler"/>
+  
+  <bean id="exceptionHandlereAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"> 
+        <property name="advice"> 
+            <ref bean="exceptionHandler"/> 
+        </property> 
+        <property name="patterns"> 
+            <value>.*.*</value> 
+        </property>
+  </bean> 
+  <!--负责记录方法的记录时间-->
+  <bean id="timeHandler" class="com.nuaa.sys.handler.TimeHandler"/>
+  <bean id="timeHandlerAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"> 
+        <property name="advice"> 
+            <ref bean="timeHandler"/> 
+        </property> 
+        <property name="patterns"> 
+            <value>.*.*</value> 
+        </property> 
+    </bean> 
+    
+</beans>

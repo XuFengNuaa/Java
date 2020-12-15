@@ -1,0 +1,149 @@
+2020-08-08 13:52:15[ INFO ]{dataSource-1} inited
+2020-08-08 13:52:16[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:52:16[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:52:16[ DEBUG ]<==      Total: 1
+2020-08-08 13:52:16[ INFO ]*******************************
+2020-08-08 13:52:16[ INFO ]登陆账户:admin
+2020-08-08 13:52:45[ DEBUG ]Cache Hit Ratio [SQL_CACHE]: 0.0
+2020-08-08 13:52:45[ DEBUG ]==>  Preparing: SELECT count(0) FROM mt_workpiece 
+2020-08-08 13:52:45[ DEBUG ]==> Parameters: 
+2020-08-08 13:52:45[ DEBUG ]<==      Total: 1
+2020-08-08 13:52:45[ DEBUG ]==>  Preparing: SELECT * FROM mt_workpiece LIMIT ? 
+2020-08-08 13:52:45[ DEBUG ]==> Parameters: 14(Integer)
+2020-08-08 13:52:45[ DEBUG ]<==      Total: 7
+2020-08-08 13:52:45[ INFO ]查询工作台信息
+2020-08-08 13:54:21[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:54:21[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:54:21[ DEBUG ]<==      Total: 1
+2020-08-08 13:54:21[ INFO ]*******************************
+2020-08-08 13:54:21[ INFO ]登陆账户:admin
+2020-08-08 13:55:47[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:55:47[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:55:47[ DEBUG ]<==      Total: 1
+2020-08-08 13:55:47[ INFO ]*******************************
+2020-08-08 13:55:47[ INFO ]登陆账户:admin
+2020-08-08 13:55:55[ DEBUG ]Cache Hit Ratio [SQL_CACHE]: 0.5
+2020-08-08 13:55:55[ DEBUG ]==>  Preparing: SELECT count(0) FROM mt_workpiece 
+2020-08-08 13:55:55[ DEBUG ]==> Parameters: 
+2020-08-08 13:55:55[ DEBUG ]<==      Total: 1
+2020-08-08 13:55:55[ DEBUG ]==>  Preparing: SELECT * FROM mt_workpiece LIMIT ? 
+2020-08-08 13:55:55[ DEBUG ]==> Parameters: 14(Integer)
+2020-08-08 13:55:55[ DEBUG ]<==      Total: 7
+2020-08-08 13:55:55[ INFO ]查询工作台信息
+2020-08-08 13:56:04[ DEBUG ]Cache Hit Ratio [SQL_CACHE]: 0.3333333333333333
+2020-08-08 13:56:04[ DEBUG ]==>  Preparing: SELECT count(0) FROM user_info 
+2020-08-08 13:56:04[ DEBUG ]==> Parameters: 
+2020-08-08 13:56:04[ DEBUG ]<==      Total: 1
+2020-08-08 13:56:04[ DEBUG ]==>  Preparing: SELECT * FROM user_info LIMIT ? 
+2020-08-08 13:56:04[ DEBUG ]==> Parameters: 10(Integer)
+2020-08-08 13:56:04[ DEBUG ]<==      Total: 7
+2020-08-08 13:56:06[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:56:06[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:56:06[ DEBUG ]<==      Total: 1
+2020-08-08 13:56:52[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:56:52[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:56:52[ DEBUG ]<==      Total: 1
+2020-08-08 13:56:57[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:56:57[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:56:57[ DEBUG ]<==      Total: 1
+2020-08-08 13:56:57[ INFO ]*******************************
+2020-08-08 13:56:57[ INFO ]登陆账户:admin
+2020-08-08 13:57:33[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:57:33[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:57:33[ DEBUG ]<==      Total: 1
+2020-08-08 13:57:59[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:57:59[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:57:59[ DEBUG ]<==      Total: 1
+2020-08-08 13:57:59[ INFO ]*******************************
+2020-08-08 13:57:59[ INFO ]登陆账户:admin
+2020-08-08 13:58:04[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-08-08 13:58:04[ DEBUG ]==> Parameters: admin(String)
+2020-08-08 13:58:04[ DEBUG ]<==      Total: 1
+2020-08-08 13:58:27[ INFO ]账户：null退出成功
+2020-08-08 13:58:27[ INFO ]**********************************************
+2020-08-08 13:58:37[ DEBUG ]Cache Hit Ratio [SQL_CACHE]: 0.25
+2020-08-08 13:58:37[ DEBUG ]==>  Preparing: SELECT count(0) FROM mt_beddfresult 
+2020-08-08 13:58:37[ DEBUG ]==> Parameters: 
+2020-08-08 13:58:37[ DEBUG ]Cache Hit Ratio [SQL_CACHE]: 0.2
+2020-08-08 13:58:37[ DEBUG ]==>  Preparing: SELECT count(0) FROM mt_updfresult 
+2020-08-08 13:58:37[ DEBUG ]==> Parameters: 
+2020-08-08 13:58:37[ DEBUG ]<==      Total: 1
+2020-08-08 13:58:37[ DEBUG ]==>  Preparing: select * from mt_beddfresult LIMIT ? 
+2020-08-08 13:58:37[ DEBUG ]==> Parameters: 8(Integer)
+2020-08-08 13:58:37[ DEBUG ]<==      Total: 2
+2020-08-08 13:58:38[ DEBUG ]<==      Total: 1
+2020-08-08 13:58:38[ DEBUG ]==>  Preparing: select * from mt_updfresult LIMIT ? 
+2020-08-08 13:58:38[ DEBUG ]==> Parameters: 8(Integer)
+2020-08-08 13:58:38[ DEBUG ]<==      Total: 2
+2020-08-08 13:58:40[ DEBUG ]==>  Preparing: select * from mt_upwgt_df WHERE dfid >= ? limit 10 
+2020-08-08 13:58:40[ DEBUG ]==> Parameters: 1(Integer)
+2020-08-08 13:58:40[ DEBUG ]<==      Total: 10
+2020-08-08 13:58:40[ DEBUG ]==>  Preparing: select * from mt_upwgt_df WHERE dfid >= ? limit 10 
+2020-08-08 13:58:40[ DEBUG ]==> Parameters: 11(Integer)
+2020-08-08 13:58:40[ DEBUG ]<==      Total: 10
+2020-08-08 13:58:43[ DEBUG ]==>  Preparing: select * from mt_upwgt_df WHERE dfid >= ? limit 10 
+2020-08-08 13:58:43[ DEBUG ]==> Parameters: 1(Integer)
+2020-08-08 13:58:43[ DEBUG ]<==      Total: 10
+2020-11-21 19:07:32[ INFO ]{dataSource-1} inited
+2020-11-21 19:07:33[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-11-21 19:07:33[ DEBUG ]==> Parameters: admin(String)
+2020-11-21 19:07:33[ DEBUG ]<==      Total: 1
+2020-11-21 19:07:33[ INFO ]*******************************
+2020-11-21 19:07:33[ INFO ]登陆账户:admin
+2020-11-21 19:08:53[ DEBUG ]==>  Preparing: SELECT * FROM mt_workpiece where gongjian_maxd >= ? and gongjian_h >= ? and zaihe >= ? order by gongjian_maxd limit 5 
+2020-11-21 19:08:53[ DEBUG ]==> Parameters: 1000(Integer), 1000(Integer), 800(Integer)
+2020-11-21 19:08:53[ DEBUG ]<==      Total: 4
+2020-11-21 19:15:18[ DEBUG ]==>  Preparing: SELECT * FROM mt_workpiece where gongjian_maxd >= ? and gongjian_h >= ? and zaihe >= ? order by gongjian_maxd limit 5 
+2020-11-21 19:15:18[ DEBUG ]==> Parameters: 1000(Integer), 1000(Integer), 800(Integer)
+2020-11-21 19:15:18[ DEBUG ]<==      Total: 4
+2020-11-21 19:15:33[ DEBUG ]==>  Preparing: SELECT * FROM mt_zhuzhou where power_min >= ? and power_max >= ? and max_speed >= ? order by power_min 
+2020-11-21 19:15:33[ DEBUG ]==> Parameters: 22.0(Double), 26.0(Double), 6000.0(Double)
+2020-11-21 19:15:33[ DEBUG ]<==      Total: 2
+2020-11-21 19:15:46[ DEBUG ]==>  Preparing: SELECT * FROM mt_atc where capacity >= ? and daobing like concat('%',?,'%') order by daobing DESC,tooltime ASC limit 5 
+2020-11-21 19:15:46[ DEBUG ]==> Parameters: 40(Integer), HSK(String)
+2020-11-21 19:15:46[ DEBUG ]<==      Total: 2
+2020-11-21 19:16:14[ DEBUG ]==>  Preparing: SELECT * FROM mt_upweight WHERE wid = ? 
+2020-11-21 19:16:14[ DEBUG ]==> Parameters: 1(Integer)
+2020-11-21 19:16:14[ DEBUG ]<==      Total: 1
+2020-11-21 19:19:32[ DEBUG ]==>  Preparing: SELECT * FROM mt_upright 
+2020-11-21 19:19:32[ DEBUG ]==> Parameters: 
+2020-11-21 19:19:32[ DEBUG ]<==      Total: 6
+2020-11-22 15:03:25[ INFO ]{dataSource-1} inited
+2020-11-22 15:03:27[ DEBUG ]==>  Preparing: SELECT * FROM user_info WHERE username = ? 
+2020-11-22 15:03:27[ DEBUG ]==> Parameters: admin(String)
+2020-11-22 15:03:27[ DEBUG ]<==      Total: 1
+2020-11-22 15:03:27[ INFO ]*******************************
+2020-11-22 15:03:27[ INFO ]登陆账户:admin
+2020-11-22 15:04:25[ DEBUG ]==>  Preparing: SELECT * FROM mt_workpiece where gongjian_maxd >= ? and gongjian_h >= ? and zaihe >= ? order by gongjian_maxd limit 5 
+2020-11-22 15:04:25[ DEBUG ]==> Parameters: 1000(Integer), 1000(Integer), 800(Integer)
+2020-11-22 15:04:25[ DEBUG ]<==      Total: 4
+2020-11-22 15:04:29[ DEBUG ]==>  Preparing: SELECT * FROM mt_zhuzhou where power_min >= ? and power_max >= ? and max_speed >= ? order by power_min 
+2020-11-22 15:04:29[ DEBUG ]==> Parameters: 18.5(Double), 22.0(Double), 0.0(Double)
+2020-11-22 15:04:29[ DEBUG ]<==      Total: 4
+2020-11-22 15:04:32[ DEBUG ]==>  Preparing: SELECT * FROM mt_zhuzhou where power_min >= ? and power_max >= ? and max_speed >= ? order by power_min 
+2020-11-22 15:04:32[ DEBUG ]==> Parameters: 22.0(Double), 26.0(Double), 6000.0(Double)
+2020-11-22 15:04:32[ DEBUG ]<==      Total: 2
+2020-11-22 15:04:42[ DEBUG ]==>  Preparing: SELECT * FROM mt_atc where capacity >= ? and daobing like concat('%',?,'%') order by daobing DESC,tooltime ASC limit 5 
+2020-11-22 15:04:42[ DEBUG ]==> Parameters: 40(Integer), HSK(String)
+2020-11-22 15:04:42[ DEBUG ]<==      Total: 2
+2020-11-22 15:04:46[ DEBUG ]==>  Preparing: SELECT * FROM mt_upweight WHERE wid = ? 
+2020-11-22 15:04:46[ DEBUG ]==> Parameters: 1(Integer)
+2020-11-22 15:04:46[ DEBUG ]<==      Total: 1
+2020-11-22 15:05:23[ DEBUG ]==>  Preparing: SELECT * FROM mt_upright 
+2020-11-22 15:05:23[ DEBUG ]==> Parameters: 
+2020-11-22 15:05:23[ DEBUG ]<==      Total: 6
+2020-11-22 15:06:27[ DEBUG ]==>  Preparing: SELECT * FROM mt_screw WHERE gcd >= ? and gcd <= ? +8 
+2020-11-22 15:06:27[ DEBUG ]==> Parameters: 40.0(Double), 40.0(Double)
+2020-11-22 15:06:27[ DEBUG ]<==      Total: 7
+2020-11-22 15:06:54[ DEBUG ]==>  Preparing: SELECT * FROM mt_screw WHERE gcd >= ? and gcd <= ? +8 
+2020-11-22 15:06:54[ DEBUG ]==> Parameters: 45.0(Double), 45.0(Double)
+2020-11-22 15:06:54[ DEBUG ]<==      Total: 7
+2020-11-22 15:07:13[ DEBUG ]==>  Preparing: SELECT * FROM mt_slideway WHERE width >= ? 
+2020-11-22 15:07:13[ DEBUG ]==> Parameters: 50(Integer)
+2020-11-22 15:07:13[ DEBUG ]<==      Total: 3
+2020-11-22 15:07:19[ DEBUG ]==>  Preparing: SELECT * FROM mt_bedweight 
+2020-11-22 15:07:19[ DEBUG ]==> Parameters: 
+2020-11-22 15:07:20[ DEBUG ]<==      Total: 1
+2020-11-22 15:07:33[ DEBUG ]==>  Preparing: SELECT * FROM mt_bed 
+2020-11-22 15:07:33[ DEBUG ]==> Parameters: 
+2020-11-22 15:07:33[ DEBUG ]<==      Total: 6

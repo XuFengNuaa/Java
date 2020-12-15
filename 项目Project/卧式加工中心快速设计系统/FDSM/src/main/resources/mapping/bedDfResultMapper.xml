@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.bedDfResultDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.bedDfResult">
+    <id column="zj_id" jdbcType="INTEGER" property="zjId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="df_date" jdbcType="VARCHAR" property="dfDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    zj_id, name, df_date
+  </sql>
+  
+  <select id="selectBedResult"  resultMap="BaseResultMap">
+    select * from mt_beddfresult
+  </select>
+  
+  <delete id="deleteByBedId" parameterType="java.lang.Integer">
+    delete from mt_beddfresult
+    where zj_id = #{zjId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertBedResult" parameterType="com.nuaa.bean.bedDfResult">
+    insert into mt_beddfresult (zj_id, name, df_date
+      )
+    values (#{zjId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{dfDate,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>

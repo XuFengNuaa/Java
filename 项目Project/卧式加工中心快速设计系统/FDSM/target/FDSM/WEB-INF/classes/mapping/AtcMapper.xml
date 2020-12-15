@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.AtcDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.Atc">
+    <id column="toolid" jdbcType="INTEGER" property="toolid" />
+    <result column="tooldaihao" jdbcType="VARCHAR" property="tooldaihao" />
+    <result column="xingshi" jdbcType="VARCHAR" property="xingshi" />
+    <result column="qudong" jdbcType="VARCHAR" property="qudong" />
+    <result column="daobing" jdbcType="VARCHAR" property="daobing" />
+    <result column="capacity" jdbcType="INTEGER" property="capacity" />
+    <result column="maxd" jdbcType="VARCHAR" property="maxd" />
+    <result column="maxd_null" jdbcType="VARCHAR" property="maxdNull" />
+    <result column="length" jdbcType="INTEGER" property="length" />
+    <result column="t_weight" jdbcType="VARCHAR" property="tWeight" />
+    <result column="tooltime" jdbcType="DOUBLE" property="tooltime" />
+    <result column="zuanhole" jdbcType="VARCHAR" property="zuanhole" />
+    <result column="gongsi" jdbcType="VARCHAR" property="gongsi" />
+    <result column="xixue" jdbcType="VARCHAR" property="xixue" />
+    <result column="course" jdbcType="VARCHAR" property="course" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    toolid, tooldaihao, xingshi, qudong, daobing, capacity, maxd, maxd_null, length, 
+    t_weight, tooltime, zuanhole, gongsi, xixue, course
+  </sql>
+  
+  <!-- 条件查询 -->
+  <select id="findSelectiveAtc"  resultType="Atc">
+		SELECT * FROM mt_atc 
+	<where>
+		<if test="xingshi!=null and xingshi!=''">
+			and xingshi = #{xingshi}
+		</if>
+		<if test="toolid!=0 and toolid!=null" >
+			and toolid = #{toolid}
+		</if>
+		<if test="course!=null and course!=''">
+			and course = #{course}
+		</if>
+	</where>
+  </select>
+ 
+  <!-- 模糊查询 -->
+  <select id="findSelectiveMHAtc"  resultType="Atc">
+		SELECT * FROM mt_atc 
+	<where>
+		<if test="xingshi!=null and xingshi!=''">
+			 and xingshi like concat('%',#{xingshi},'%')
+		</if>
+		<if test="toolid!=0 and toolid!=null" >
+			and toolid = #{toolid}
+		</if>
+		<if test="course!=null and course!=''">
+			 and course like concat('%',#{course},'%')
+		</if>
+	</where>
+  </select>	 
+  <select id="findReasonAtc"  resultType="Atc">
+		SELECT * FROM mt_atc 
+		where capacity &gt;= #{capacity} and daobing like concat('%',#{daobing},'%')
+		<if test="xingshi!=null and xingshi!=''">
+			and xingshi = #{xingshi}
+		</if>
+		<!-- order by tooltime limit 4 -->
+		order by daobing DESC,tooltime ASC limit 5
+	
+  </select>
+  
+  <delete id="deleteAtcById" parameterType="java.lang.Integer">
+    delete from mt_atc
+    where toolid = #{toolid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertAtc" parameterType="com.nuaa.bean.Atc">
+    insert into mt_atc (toolid, tooldaihao, xingshi, 
+      qudong, daobing, capacity, 
+      maxd, maxd_null, length, 
+      t_weight, tooltime, zuanhole, 
+      gongsi, xixue, course
+      )
+    values (#{toolid,jdbcType=INTEGER}, #{tooldaihao,jdbcType=VARCHAR}, #{xingshi,jdbcType=VARCHAR}, 
+      #{qudong,jdbcType=VARCHAR}, #{daobing,jdbcType=VARCHAR}, #{capacity,jdbcType=INTEGER}, 
+      #{maxd,jdbcType=VARCHAR}, #{maxdNull,jdbcType=VARCHAR}, #{length,jdbcType=INTEGER}, 
+      #{tWeight,jdbcType=VARCHAR}, #{tooltime,jdbcType=DOUBLE}, #{zuanhole,jdbcType=VARCHAR}, 
+      #{gongsi,jdbcType=VARCHAR}, #{xixue,jdbcType=VARCHAR}, #{course,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateAtcByIdSelective" parameterType="com.nuaa.bean.Atc">
+    update mt_atc
+    <set>
+      <if test="tooldaihao != null">
+        tooldaihao = #{tooldaihao,jdbcType=VARCHAR},
+      </if>
+      <if test="xingshi != null">
+        xingshi = #{xingshi,jdbcType=VARCHAR},
+      </if>
+      <if test="qudong != null">
+        qudong = #{qudong,jdbcType=VARCHAR},
+      </if>
+      <if test="daobing != null">
+        daobing = #{daobing,jdbcType=VARCHAR},
+      </if>
+      <if test="capacity != null">
+        capacity = #{capacity,jdbcType=INTEGER},
+      </if>
+      <if test="maxd != null">
+        maxd = #{maxd,jdbcType=VARCHAR},
+      </if>
+      <if test="maxdNull != null">
+        maxd_null = #{maxdNull,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="tWeight != null">
+        t_weight = #{tWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="tooltime != null">
+        tooltime = #{tooltime,jdbcType=DOUBLE},
+      </if>
+      <if test="zuanhole != null">
+        zuanhole = #{zuanhole,jdbcType=VARCHAR},
+      </if>
+      <if test="gongsi != null">
+        gongsi = #{gongsi,jdbcType=VARCHAR},
+      </if>
+      <if test="xixue != null">
+        xixue = #{xixue,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null">
+        course = #{course,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where toolid = #{toolid,jdbcType=INTEGER}
+  </update>
+  <update id="updateAtcById" parameterType="com.nuaa.bean.Atc">
+    update mt_atc
+    set tooldaihao = #{tooldaihao,jdbcType=VARCHAR},
+      xingshi = #{xingshi,jdbcType=VARCHAR},
+      qudong = #{qudong,jdbcType=VARCHAR},
+      daobing = #{daobing,jdbcType=VARCHAR},
+      capacity = #{capacity,jdbcType=INTEGER},
+      maxd = #{maxd,jdbcType=VARCHAR},
+      maxd_null = #{maxdNull,jdbcType=VARCHAR},
+      length = #{length,jdbcType=INTEGER},
+      t_weight = #{tWeight,jdbcType=VARCHAR},
+      tooltime = #{tooltime,jdbcType=DOUBLE},
+      zuanhole = #{zuanhole,jdbcType=VARCHAR},
+      gongsi = #{gongsi,jdbcType=VARCHAR},
+      xixue = #{xixue,jdbcType=VARCHAR},
+      course = #{course,jdbcType=VARCHAR}
+    where toolid = #{toolid,jdbcType=INTEGER}
+  </update>
+</mapper>

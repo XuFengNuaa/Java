@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">	
+
+<title>展示</title>
+<link rel="shortcut icon" href="textures/favicon.png">
+
+<style>
+	canvas { width: 100%; height: 100% }
+
+	body{ 
+		border: none; 
+		overflow: hidden; 
+		margin: 0px; 
+		background: url(textures/bg.jpg);
+		background-size: 100% 100%;
+	}
+</style>
+
+</head>
+
+<body>
+
+
+<script src="js/three1.js"></script>
+<script src="js/three2.js"></script>
+<script src="js/three3.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script>
+	
+//创建canvas容器
+var	container = document.createElement( 'div' );
+	document.body.appendChild( container );
+	
+//创建广角相机
+var	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100000 );
+	camera.position.set(-30,20,-30);
+	
+//创建场景
+var	scene = new THREE.Scene();
+
+//创建环境光源
+var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+   	hemiLight.position.set( 0, 500, 0 );
+   	scene.add( hemiLight ); 
+
+//创建点光源
+var pointLight = new THREE.PointLight(0xFFFFFF, 0.5);
+    scene.add(pointLight);
+
+//渲染器
+var	renderer = new THREE.WebGLRenderer( { antialias: true,alpha:true } );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setPixelRatio( window.devicePixelRatio );      
+	container.appendChild( renderer.domElement );
+
+//控制器
+var controls;
+    controls = new THREE.OrbitControls( camera );
+    controls.autoRotateSpeed = 4;   
+
+//加载模型
+var GLTFLoader = new THREE.GLTFLoader();
+    THREE.DRACOLoader.setDecoderPath( 'js/gltf/' );
+	GLTFLoader.setDRACOLoader( new THREE.DRACOLoader() );
+
+	GLTFLoader.load( "jixie.gltf", function ( gltf ) {
+		gltf.scene.traverse( function ( child ) {		
+			if ( child.isMesh ) {
+				child.material.side = THREE.DoubleSide;
+            	child.material.color.set(0x9399ae)
+			}
+		}); 
+        gltf.scene.position.set(0,0,0)         
+        gltf.scene.scale.set(500,500,500); 	         
+		scene.add( gltf.scene );	
+	});		
+ 
+ 
+//窗口自适应
+window.addEventListener( 'resize', onWindowResize, false );
+function onWindowResize( event ) {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+
+//循环渲染
+render(); 
+function render() {
+	requestAnimationFrame( render ); 
+	controls.update();
+
+    pointLight.position.copy ( camera.position );       
+    pointLight.scale.copy ( camera.scale ); 
+
+    renderer.clear();
+    renderer.render( scene, camera );
+}
+
+</script>
+
+	
+</body>
+</html>

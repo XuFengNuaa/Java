@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuaa.dao.upwgtDfDao">
+  <resultMap id="BaseResultMap" type="com.nuaa.bean.upwgtDf">
+    <id column="dfid" jdbcType="INTEGER" property="dfid" />
+    <result column="Height" jdbcType="INTEGER" property="height" />
+    <result column="Kuang" jdbcType="INTEGER" property="kuang" />
+    <result column="yroute" jdbcType="INTEGER" property="yroute" />
+    <result column="sdWidth" jdbcType="INTEGER" property="sdwidth" />
+    <result column="sdHeight" jdbcType="INTEGER" property="sdheight" />
+    <result column="sideThick" jdbcType="INTEGER" property="sidethick" />
+    <result column="hole" jdbcType="INTEGER" property="hole" />
+    <result column="ribThick" jdbcType="INTEGER" property="ribthick" />
+    <result column="hNumber" jdbcType="INTEGER" property="hnumber" />
+    <result column="sNumber" jdbcType="INTEGER" property="snumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dfid, Height, Kuang, yroute, sdWidth, sdHeight, sideThick, hole, ribThick, hNumber, 
+    sNumber
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from mt_upwgt_df
+    	<where>
+			<if test="dfid !='' and dfid !=null">
+				and dfid &gt;= #{dfid} limit 10 
+			</if>
+		</where>	
+  </select>
+  
+  <delete id="deleteUpByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mt_upwgt_df
+    where dfid = #{dfid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.nuaa.bean.upwgtDf">
+    insert into mt_upwgt_df (dfid, Height, Kuang, 
+      yroute, sdWidth, sdHeight, 
+      sideThick, hole, ribThick, 
+      hNumber, sNumber)
+    values (#{dfid,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, #{kuang,jdbcType=INTEGER}, 
+      #{yroute,jdbcType=INTEGER}, #{sdwidth,jdbcType=INTEGER}, #{sdheight,jdbcType=INTEGER}, 
+      #{sidethick,jdbcType=INTEGER}, #{hole,jdbcType=INTEGER}, #{ribthick,jdbcType=INTEGER}, 
+      #{hnumber,jdbcType=INTEGER}, #{snumber,jdbcType=INTEGER})
+  </insert>
+</mapper>
